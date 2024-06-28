@@ -1,4 +1,4 @@
-package ast.Hook;
+package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;

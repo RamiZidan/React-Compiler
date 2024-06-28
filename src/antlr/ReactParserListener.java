@@ -58,6 +58,16 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitListOfIdentifiers(ReactParser.ListOfIdentifiersContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ReactParser#hook}.
+	 * @param ctx the parse tree
+	 */
+	void enterHook(ReactParser.HookContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#hook}.
+	 * @param ctx the parse tree
+	 */
+	void exitHook(ReactParser.HookContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ReactParser#exportStatment}.
 	 * @param ctx the parse tree
 	 */
@@ -108,15 +118,15 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitComponentBody(ReactParser.ComponentBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#componentReturnStatment}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxReturnStatment}.
 	 * @param ctx the parse tree
 	 */
-	void enterComponentReturnStatment(ReactParser.ComponentReturnStatmentContext ctx);
+	void enterJsxReturnStatment(ReactParser.JsxReturnStatmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#componentReturnStatment}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxReturnStatment}.
 	 * @param ctx the parse tree
 	 */
-	void exitComponentReturnStatment(ReactParser.ComponentReturnStatmentContext ctx);
+	void exitJsxReturnStatment(ReactParser.JsxReturnStatmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ReactParser#regularFunctionStart}.
 	 * @param ctx the parse tree
@@ -158,6 +168,246 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitStatments(ReactParser.StatmentsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ReactParser#functionStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionStatment(ReactParser.FunctionStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#functionStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionStatment(ReactParser.FunctionStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#regularFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterRegularFunction(ReactParser.RegularFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#regularFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitRegularFunction(ReactParser.RegularFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#arrowFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrowFunction(ReactParser.ArrowFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#arrowFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrowFunction(ReactParser.ArrowFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBody(ReactParser.FunctionBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBody(ReactParser.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#variableReturnStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableReturnStatment(ReactParser.VariableReturnStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#variableReturnStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableReturnStatment(ReactParser.VariableReturnStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#ifStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStatment(ReactParser.IfStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#ifStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStatment(ReactParser.IfStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#whileStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatment(ReactParser.WhileStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#whileStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatment(ReactParser.WhileStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#conditionsList}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionsList(ReactParser.ConditionsListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#conditionsList}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionsList(ReactParser.ConditionsListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(ReactParser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(ReactParser.ConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#compare}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompare(ReactParser.CompareContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#compare}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompare(ReactParser.CompareContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#hookDeclarationStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterHookDeclarationStatment(ReactParser.HookDeclarationStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#hookDeclarationStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitHookDeclarationStatment(ReactParser.HookDeclarationStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#assignStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignStatment(ReactParser.AssignStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#assignStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignStatment(ReactParser.AssignStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquation(ReactParser.EquationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquation(ReactParser.EquationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperation(ReactParser.OperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperation(ReactParser.OperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#useEffect}.
+	 * @param ctx the parse tree
+	 */
+	void enterUseEffect(ReactParser.UseEffectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#useEffect}.
+	 * @param ctx the parse tree
+	 */
+	void exitUseEffect(ReactParser.UseEffectContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#dependancyList}.
+	 * @param ctx the parse tree
+	 */
+	void enterDependancyList(ReactParser.DependancyListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#dependancyList}.
+	 * @param ctx the parse tree
+	 */
+	void exitDependancyList(ReactParser.DependancyListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#useState}.
+	 * @param ctx the parse tree
+	 */
+	void enterUseState(ReactParser.UseStateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#useState}.
+	 * @param ctx the parse tree
+	 */
+	void exitUseState(ReactParser.UseStateContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#useRef}.
+	 * @param ctx the parse tree
+	 */
+	void enterUseRef(ReactParser.UseRefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#useRef}.
+	 * @param ctx the parse tree
+	 */
+	void exitUseRef(ReactParser.UseRefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#varDeclarationStatment}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclarationStatment(ReactParser.VarDeclarationStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#varDeclarationStatment}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclarationStatment(ReactParser.VarDeclarationStatmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(ReactParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(ReactParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#array}.
+	 * @param ctx the parse tree
+	 */
+	void enterArray(ReactParser.ArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#array}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray(ReactParser.ArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#object}.
+	 * @param ctx the parse tree
+	 */
+	void enterObject(ReactParser.ObjectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#object}.
+	 * @param ctx the parse tree
+	 */
+	void exitObject(ReactParser.ObjectContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(ReactParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(ReactParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(ReactParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(ReactParser.StringContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ReactParser#varModifier}.
 	 * @param ctx the parse tree
 	 */
@@ -178,26 +428,6 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitEos(ReactParser.EosContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxElements}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxElements(ReactParser.JsxElementsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxElements}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxElements(ReactParser.JsxElementsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxElementBegin}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxElementBegin(ReactParser.JsxElementBeginContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxElementBegin}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxElementBegin(ReactParser.JsxElementBeginContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ReactParser#jsxElement}.
 	 * @param ctx the parse tree
 	 */
@@ -208,155 +438,55 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitJsxElement(ReactParser.JsxElementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxSelfClosingElement}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxTagName}.
 	 * @param ctx the parse tree
 	 */
-	void enterJsxSelfClosingElement(ReactParser.JsxSelfClosingElementContext ctx);
+	void enterJsxTagName(ReactParser.JsxTagNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxSelfClosingElement}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxTagName}.
 	 * @param ctx the parse tree
 	 */
-	void exitJsxSelfClosingElement(ReactParser.JsxSelfClosingElementContext ctx);
+	void exitJsxTagName(ReactParser.JsxTagNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxOpeningElement}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxAttName}.
 	 * @param ctx the parse tree
 	 */
-	void enterJsxOpeningElement(ReactParser.JsxOpeningElementContext ctx);
+	void enterJsxAttName(ReactParser.JsxAttNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxOpeningElement}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxAttName}.
 	 * @param ctx the parse tree
 	 */
-	void exitJsxOpeningElement(ReactParser.JsxOpeningElementContext ctx);
+	void exitJsxAttName(ReactParser.JsxAttNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxClosingElement}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxAttValue}.
 	 * @param ctx the parse tree
 	 */
-	void enterJsxClosingElement(ReactParser.JsxClosingElementContext ctx);
+	void enterJsxAttValue(ReactParser.JsxAttValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxClosingElement}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxAttValue}.
 	 * @param ctx the parse tree
 	 */
-	void exitJsxClosingElement(ReactParser.JsxClosingElementContext ctx);
+	void exitJsxAttValue(ReactParser.JsxAttValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxChildren}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxAtt}.
 	 * @param ctx the parse tree
 	 */
-	void enterJsxChildren(ReactParser.JsxChildrenContext ctx);
+	void enterJsxAtt(ReactParser.JsxAttContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxChildren}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxAtt}.
 	 * @param ctx the parse tree
 	 */
-	void exitJsxChildren(ReactParser.JsxChildrenContext ctx);
+	void exitJsxAtt(ReactParser.JsxAttContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxSelfClosingElementName}.
+	 * Enter a parse tree produced by {@link ReactParser#jsxEleContent}.
 	 * @param ctx the parse tree
 	 */
-	void enterJsxSelfClosingElementName(ReactParser.JsxSelfClosingElementNameContext ctx);
+	void enterJsxEleContent(ReactParser.JsxEleContentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxSelfClosingElementName}.
+	 * Exit a parse tree produced by {@link ReactParser#jsxEleContent}.
 	 * @param ctx the parse tree
 	 */
-	void exitJsxSelfClosingElementName(ReactParser.JsxSelfClosingElementNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxOpeningElementName}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxOpeningElementName(ReactParser.JsxOpeningElementNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxOpeningElementName}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxOpeningElementName(ReactParser.JsxOpeningElementNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxClosingElementName}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxClosingElementName(ReactParser.JsxClosingElementNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxClosingElementName}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxClosingElementName(ReactParser.JsxClosingElementNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxAttributes}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxAttributes(ReactParser.JsxAttributesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxAttributes}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxAttributes(ReactParser.JsxAttributesContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxSpreadAttribute}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxSpreadAttribute(ReactParser.JsxSpreadAttributeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxSpreadAttribute}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxSpreadAttribute(ReactParser.JsxSpreadAttributeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxAttribute}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxAttribute(ReactParser.JsxAttributeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxAttribute}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxAttribute(ReactParser.JsxAttributeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxAttributeName}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxAttributeName(ReactParser.JsxAttributeNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxAttributeName}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxAttributeName(ReactParser.JsxAttributeNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#jsxAttributeValue}.
-	 * @param ctx the parse tree
-	 */
-	void enterJsxAttributeValue(ReactParser.JsxAttributeValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#jsxAttributeValue}.
-	 * @param ctx the parse tree
-	 */
-	void exitJsxAttributeValue(ReactParser.JsxAttributeValueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#objectExpressionSequence}.
-	 * @param ctx the parse tree
-	 */
-	void enterObjectExpressionSequence(ReactParser.ObjectExpressionSequenceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#objectExpressionSequence}.
-	 * @param ctx the parse tree
-	 */
-	void exitObjectExpressionSequence(ReactParser.ObjectExpressionSequenceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#openBrace}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpenBrace(ReactParser.OpenBraceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#openBrace}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpenBrace(ReactParser.OpenBraceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ReactParser#expressionSequence}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionSequence(ReactParser.ExpressionSequenceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#expressionSequence}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionSequence(ReactParser.ExpressionSequenceContext ctx);
+	void exitJsxEleContent(ReactParser.JsxEleContentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ReactParser#singleExpression}.
 	 * @param ctx the parse tree
@@ -367,4 +497,24 @@ public interface ReactParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSingleExpression(ReactParser.SingleExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#arrayJsx}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayJsx(ReactParser.ArrayJsxContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#arrayJsx}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayJsx(ReactParser.ArrayJsxContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#callbackFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallbackFunction(ReactParser.CallbackFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#callbackFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallbackFunction(ReactParser.CallbackFunctionContext ctx);
 }

@@ -1,7 +1,7 @@
-package ast.Hook;
+package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
-import ast.Variable.Variable;
+import ast.Statment.Variable.Variable;
 
 public class UseState extends Hook implements CodeGeneartion {
     public String stateName;
@@ -39,6 +39,7 @@ public class UseState extends Hook implements CodeGeneartion {
         return symbol();
     }
     @Override
+
     public String symbol() {
         return "Hook { " + " type=useState , "  + " stateName=" + stateName + ", setStateFunction=" + setStateFunctionName + ", value=" + value.toString()  + " }" ;
     }

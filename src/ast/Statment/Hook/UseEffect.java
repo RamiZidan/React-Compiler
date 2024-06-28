@@ -1,8 +1,8 @@
-package ast.Hook;
+package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
-import ast.Variable.Variable;
+import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 

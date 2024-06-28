@@ -1,4 +1,4 @@
-package ast.Variable;
+package ast.Statment.Variable;
 import ast.CodeGeneartion;
 
 import java.util.ArrayList;

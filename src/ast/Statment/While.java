@@ -34,7 +34,12 @@ public class While extends Statment implements CodeGeneartion {
         return symbol();
     }
     public String symbol(){
-        return "While statment { " + "conditions=" + conditionsList.toString()  + "statments=" +  statments.toString() + " }" ;
+        String str =  "While statment { " + "conditions=" + conditionsList.toString()  + "statments=" + " {" ;
+        for(int i =0 ;i < statments.size();i++){
+            str+= statments.get(i).toString();
+        }
+        str += " }" ;
+        return str ;
     }
 
     public String generate() {

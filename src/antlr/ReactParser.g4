@@ -7,7 +7,7 @@ options {
 }
 
 program :
-     statments* exportStatment EOF
+     statment*  EOF
     ;
 
 importStatment : // done
@@ -50,7 +50,7 @@ functionalComponent:
        |arrowFunctionStart componentBody
     ;
 componentBody:
-    OpenBrace statments* jsxReturnStatment CloseBrace eos
+    OpenBrace statment* jsxReturnStatment CloseBrace eos
     ;
 jsxReturnStatment:
      Return OpenParen jsxElement CloseParen eos
@@ -69,7 +69,7 @@ params: // done
     (Identifier Comma?)*
     ;
 
-statments:
+statment:
         varDeclarationStatment // done
       | hookDeclarationStatment // done
       | assignStatment // done
@@ -78,6 +78,7 @@ statments:
       | functionStatment // done
       | functionalComponent
       | importStatment // done
+      | exportStatment
     ;
 functionStatment: // done
      regularFunction
@@ -90,7 +91,7 @@ arrowFunction: // done
     arrowFunctionStart functionBody
     ;
 functionBody: // done
-     OpenBrace statments* variableReturnStatment CloseBrace eos
+     OpenBrace statment* variableReturnStatment CloseBrace eos
     ;
 variableReturnStatment: // done
     Return variable eos
@@ -98,10 +99,10 @@ variableReturnStatment: // done
 
 
 ifStatment: // done
-    If OpenParen conditionsList CloseParen OpenBrace statments* CloseBrace
+    If OpenParen conditionsList CloseParen OpenBrace statment* CloseBrace
     ;
 whileStatment: // done
-    While OpenParen conditionsList CloseParen OpenBrace statments* CloseBrace
+    While OpenParen conditionsList CloseParen OpenBrace statment* CloseBrace
     ;
 conditionsList: // done
      (condition (And | Or))* condition
@@ -127,7 +128,7 @@ hookDeclarationStatment: // done
     |useState
     |useRef
     ;
-assignStatment:
+assignStatment: // done
     Identifier Assign equation eos
     ;
 
@@ -142,9 +143,9 @@ operation:
     | Multiply
     ;
 useEffect: // done
-    UseEffect OpenParen OpenParen params CloseParen Arrow OpenBrace statments* CloseBrace Comma dependancyList CloseParen eos
+    UseEffect OpenParen OpenParen params CloseParen Arrow OpenBrace statment* CloseBrace Comma dependancyList CloseParen eos
     ;
-dependancyList:
+dependancyList: // done
     array
     ;
 useState: // done
@@ -177,7 +178,7 @@ string:// done
     ;
 
 
-varModifier:
+varModifier: // done
       Var
     | Let
     | Const
@@ -186,6 +187,7 @@ eos:
     SemiColon
     ;
 
+// done
 jsxElement:LessThan jsxTagName jsxAtt* GreaterThan jsxEleContent* LessThan Divide jsxTagName GreaterThan // <tag att> content </tag>
           |LessThan jsxTagName jsxAtt* Divide GreaterThan                                             // <tag att />
 ;
@@ -210,7 +212,7 @@ arrayJsx:
     ;
 
 callbackFunction:
-    OpenParen params CloseParen Arrow OpenBrace statments* jsxReturnStatment CloseBrace eos
+    OpenParen params CloseParen Arrow OpenBrace statment* jsxReturnStatment CloseBrace eos
     ;
 //
 //jsxElements

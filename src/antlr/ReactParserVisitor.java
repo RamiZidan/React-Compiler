@@ -41,6 +41,12 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitListOfIdentifiers(ReactParser.ListOfIdentifiersContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ReactParser#hook}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHook(ReactParser.HookContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ReactParser#exportStatment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -71,11 +77,11 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComponentBody(ReactParser.ComponentBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#componentReturnStatment}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxReturnStatment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitComponentReturnStatment(ReactParser.ComponentReturnStatmentContext ctx);
+	T visitJsxReturnStatment(ReactParser.JsxReturnStatmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ReactParser#regularFunctionStart}.
 	 * @param ctx the parse tree
@@ -101,6 +107,150 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatments(ReactParser.StatmentsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ReactParser#functionStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionStatment(ReactParser.FunctionStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#regularFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRegularFunction(ReactParser.RegularFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#arrowFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrowFunction(ReactParser.ArrowFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#functionBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionBody(ReactParser.FunctionBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#variableReturnStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableReturnStatment(ReactParser.VariableReturnStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#ifStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStatment(ReactParser.IfStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#whileStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatment(ReactParser.WhileStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#conditionsList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionsList(ReactParser.ConditionsListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(ReactParser.ConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#compare}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompare(ReactParser.CompareContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#hookDeclarationStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHookDeclarationStatment(ReactParser.HookDeclarationStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#assignStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignStatment(ReactParser.AssignStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquation(ReactParser.EquationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#operation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperation(ReactParser.OperationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#useEffect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUseEffect(ReactParser.UseEffectContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#dependancyList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDependancyList(ReactParser.DependancyListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#useState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUseState(ReactParser.UseStateContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#useRef}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUseRef(ReactParser.UseRefContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#varDeclarationStatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarDeclarationStatment(ReactParser.VarDeclarationStatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(ReactParser.VariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#array}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArray(ReactParser.ArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#object}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObject(ReactParser.ObjectContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(ReactParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(ReactParser.StringContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ReactParser#varModifier}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -113,117 +263,57 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEos(ReactParser.EosContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxElements}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxElements(ReactParser.JsxElementsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxElementBegin}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxElementBegin(ReactParser.JsxElementBeginContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ReactParser#jsxElement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitJsxElement(ReactParser.JsxElementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxSelfClosingElement}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxTagName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJsxSelfClosingElement(ReactParser.JsxSelfClosingElementContext ctx);
+	T visitJsxTagName(ReactParser.JsxTagNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxOpeningElement}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxAttName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJsxOpeningElement(ReactParser.JsxOpeningElementContext ctx);
+	T visitJsxAttName(ReactParser.JsxAttNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxClosingElement}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxAttValue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJsxClosingElement(ReactParser.JsxClosingElementContext ctx);
+	T visitJsxAttValue(ReactParser.JsxAttValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxChildren}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxAtt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJsxChildren(ReactParser.JsxChildrenContext ctx);
+	T visitJsxAtt(ReactParser.JsxAttContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxSelfClosingElementName}.
+	 * Visit a parse tree produced by {@link ReactParser#jsxEleContent}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJsxSelfClosingElementName(ReactParser.JsxSelfClosingElementNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxOpeningElementName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxOpeningElementName(ReactParser.JsxOpeningElementNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxClosingElementName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxClosingElementName(ReactParser.JsxClosingElementNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxAttributes}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxAttributes(ReactParser.JsxAttributesContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxSpreadAttribute}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxSpreadAttribute(ReactParser.JsxSpreadAttributeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxAttribute}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxAttribute(ReactParser.JsxAttributeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxAttributeName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxAttributeName(ReactParser.JsxAttributeNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#jsxAttributeValue}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJsxAttributeValue(ReactParser.JsxAttributeValueContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#objectExpressionSequence}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitObjectExpressionSequence(ReactParser.ObjectExpressionSequenceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#openBrace}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOpenBrace(ReactParser.OpenBraceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ReactParser#expressionSequence}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionSequence(ReactParser.ExpressionSequenceContext ctx);
+	T visitJsxEleContent(ReactParser.JsxEleContentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ReactParser#singleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSingleExpression(ReactParser.SingleExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#arrayJsx}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayJsx(ReactParser.ArrayJsxContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#callbackFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallbackFunction(ReactParser.CallbackFunctionContext ctx);
 }

@@ -1,6 +1,6 @@
 package ast.Statment.IfStatment;
 
-import ast.Variable.Variable;
+import ast.Statment.Variable.Variable;
 
 public class Condition  {
     public Variable variable1 ;

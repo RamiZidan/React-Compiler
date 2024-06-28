@@ -2,7 +2,7 @@ package ast.Statment.Component;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
-import ast.Variable.Variable;
+import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 import java.util.HashMap;

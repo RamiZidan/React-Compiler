@@ -2,7 +2,7 @@ package ast.Statment.FunctionStatment;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
-import ast.Variable.Variable;
+import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,14 @@ public class Function extends Statment implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        return "Function { " + "params=" + params.toString() + ", statments=" + statments.toString()  + ", returnStatment=" + returnValue.toString() + " }" ;
+        String str =  "Function { " + "params=" + params.toString() ;
+        str +=  ", statments= { " ;
+        for(int i =0  ;i < statments.size() ;i++){
+            str+= statments.get(i).toString();
+        }
+        str += ", returnStatment=" + returnValue.toString() + " }" ;
+        return str ;
+
     }
     public String generate(){
         return "";
