@@ -1,5 +1,4 @@
-// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
-package antlr;
+// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -123,7 +122,7 @@ public class ReactParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStatments(ReactParser.StatmentsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStatment(ReactParser.StatmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

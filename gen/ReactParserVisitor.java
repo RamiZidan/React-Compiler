@@ -1,5 +1,4 @@
-// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
-package antlr;
+// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -101,11 +100,11 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParams(ReactParser.ParamsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#statments}.
+	 * Visit a parse tree produced by {@link ReactParser#statment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatments(ReactParser.StatmentsContext ctx);
+	T visitStatment(ReactParser.StatmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ReactParser#functionStatment}.
 	 * @param ctx the parse tree

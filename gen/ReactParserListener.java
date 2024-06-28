@@ -1,5 +1,4 @@
-// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
-package antlr;
+// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -158,15 +157,15 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitParams(ReactParser.ParamsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#statments}.
+	 * Enter a parse tree produced by {@link ReactParser#statment}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatments(ReactParser.StatmentsContext ctx);
+	void enterStatment(ReactParser.StatmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ReactParser#statments}.
+	 * Exit a parse tree produced by {@link ReactParser#statment}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatments(ReactParser.StatmentsContext ctx);
+	void exitStatment(ReactParser.StatmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ReactParser#functionStatment}.
 	 * @param ctx the parse tree

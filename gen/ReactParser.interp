@@ -314,7 +314,7 @@ jsxReturnStatment
 regularFunctionStart
 arrowFunctionStart
 params
-statments
+statment
 functionStatment
 regularFunction
 arrowFunction

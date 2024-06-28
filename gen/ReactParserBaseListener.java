@@ -1,5 +1,4 @@
-// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
-package antlr;
+// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -197,13 +196,13 @@ public class ReactParserBaseListener implements ReactParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatments(ReactParser.StatmentsContext ctx) { }
+	@Override public void enterStatment(ReactParser.StatmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatments(ReactParser.StatmentsContext ctx) { }
+	@Override public void exitStatment(ReactParser.StatmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

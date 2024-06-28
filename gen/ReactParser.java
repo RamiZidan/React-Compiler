@@ -1,5 +1,4 @@
-// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
-package antlr;
+// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -54,7 +53,7 @@ public class ReactParser extends Parser {
 		RULE_exportStatment = 6, RULE_component = 7, RULE_classComponent = 8, 
 		RULE_functionalComponent = 9, RULE_componentBody = 10, RULE_jsxReturnStatment = 11, 
 		RULE_regularFunctionStart = 12, RULE_arrowFunctionStart = 13, RULE_params = 14, 
-		RULE_statments = 15, RULE_functionStatment = 16, RULE_regularFunction = 17, 
+		RULE_statment = 15, RULE_functionStatment = 16, RULE_regularFunction = 17, 
 		RULE_arrowFunction = 18, RULE_functionBody = 19, RULE_variableReturnStatment = 20, 
 		RULE_ifStatment = 21, RULE_whileStatment = 22, RULE_conditionsList = 23, 
 		RULE_condition = 24, RULE_compare = 25, RULE_hookDeclarationStatment = 26, 
@@ -70,7 +69,7 @@ public class ReactParser extends Parser {
 			"program", "importStatment", "namedImportStatment", "defaultImportStatment", 
 			"listOfIdentifiers", "hook", "exportStatment", "component", "classComponent", 
 			"functionalComponent", "componentBody", "jsxReturnStatment", "regularFunctionStart", 
-			"arrowFunctionStart", "params", "statments", "functionStatment", "regularFunction", 
+			"arrowFunctionStart", "params", "statment", "functionStatment", "regularFunction", 
 			"arrowFunction", "functionBody", "variableReturnStatment", "ifStatment", 
 			"whileStatment", "conditionsList", "condition", "compare", "hookDeclarationStatment", 
 			"assignStatment", "equation", "operation", "useEffect", "dependancyList", 
@@ -192,11 +191,11 @@ public class ReactParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class ProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(ReactParser.EOF, 0); }
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -231,7 +230,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(102);
-				statments();
+				statment();
 				}
 				}
 				setState(107);
@@ -979,11 +978,11 @@ public class ReactParser extends Parser {
 		public EosContext eos() {
 			return getRuleContext(EosContext.class,0);
 		}
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public ComponentBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1020,7 +1019,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(198);
-				statments();
+				statment();
 				}
 				}
 				setState(203);
@@ -1348,7 +1347,7 @@ public class ReactParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class StatmentsContext extends ParserRuleContext {
+	public static class StatmentContext extends ParserRuleContext {
 		public VarDeclarationStatmentContext varDeclarationStatment() {
 			return getRuleContext(VarDeclarationStatmentContext.class,0);
 		}
@@ -1376,28 +1375,28 @@ public class ReactParser extends Parser {
 		public ExportStatmentContext exportStatment() {
 			return getRuleContext(ExportStatmentContext.class,0);
 		}
-		public StatmentsContext(ParserRuleContext parent, int invokingState) {
+		public StatmentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_statments; }
+		@Override public int getRuleIndex() { return RULE_statment; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ReactParserListener ) ((ReactParserListener)listener).enterStatments(this);
+			if ( listener instanceof ReactParserListener ) ((ReactParserListener)listener).enterStatment(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ReactParserListener ) ((ReactParserListener)listener).exitStatments(this);
+			if ( listener instanceof ReactParserListener ) ((ReactParserListener)listener).exitStatment(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ReactParserVisitor ) return ((ReactParserVisitor<? extends T>)visitor).visitStatments(this);
+			if ( visitor instanceof ReactParserVisitor ) return ((ReactParserVisitor<? extends T>)visitor).visitStatment(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StatmentsContext statments() throws RecognitionException {
-		StatmentsContext _localctx = new StatmentsContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_statments);
+	public final StatmentContext statment() throws RecognitionException {
+		StatmentContext _localctx = new StatmentContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_statment);
 		try {
 			setState(261);
 			_errHandler.sync(this);
@@ -1653,11 +1652,11 @@ public class ReactParser extends Parser {
 		public EosContext eos() {
 			return getRuleContext(EosContext.class,0);
 		}
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public FunctionBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1694,7 +1693,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(274);
-				statments();
+				statment();
 				}
 				}
 				setState(279);
@@ -1783,11 +1782,11 @@ public class ReactParser extends Parser {
 		public TerminalNode CloseParen() { return getToken(ReactParser.CloseParen, 0); }
 		public TerminalNode OpenBrace() { return getToken(ReactParser.OpenBrace, 0); }
 		public TerminalNode CloseBrace() { return getToken(ReactParser.CloseBrace, 0); }
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public IfStatmentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1832,7 +1831,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(293);
-				statments();
+				statment();
 				}
 				}
 				setState(298);
@@ -1864,11 +1863,11 @@ public class ReactParser extends Parser {
 		public TerminalNode CloseParen() { return getToken(ReactParser.CloseParen, 0); }
 		public TerminalNode OpenBrace() { return getToken(ReactParser.OpenBrace, 0); }
 		public TerminalNode CloseBrace() { return getToken(ReactParser.CloseBrace, 0); }
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public WhileStatmentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1913,7 +1912,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(306);
-				statments();
+				statment();
 				}
 				}
 				setState(311);
@@ -2465,11 +2464,11 @@ public class ReactParser extends Parser {
 		public EosContext eos() {
 			return getRuleContext(EosContext.class,0);
 		}
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public UseEffectContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2518,7 +2517,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(369);
-				statments();
+				statment();
 				}
 				}
 				setState(374);
@@ -3872,11 +3871,11 @@ public class ReactParser extends Parser {
 		public EosContext eos() {
 			return getRuleContext(EosContext.class,0);
 		}
-		public List<StatmentsContext> statments() {
-			return getRuleContexts(StatmentsContext.class);
+		public List<StatmentContext> statment() {
+			return getRuleContexts(StatmentContext.class);
 		}
-		public StatmentsContext statments(int i) {
-			return getRuleContext(StatmentsContext.class,i);
+		public StatmentContext statment(int i) {
+			return getRuleContext(StatmentContext.class,i);
 		}
 		public CallbackFunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3921,7 +3920,7 @@ public class ReactParser extends Parser {
 				{
 				{
 				setState(538);
-				statments();
+				statment();
 				}
 				}
 				setState(543);
