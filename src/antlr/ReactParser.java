@@ -1,4 +1,5 @@
-// Generated from /home/social/IdeaProjects/React/src/ReactParser.g4 by ANTLR 4.13.1
+// Generated from /home/social/IdeaProjects/React/src/antlr/ReactParser.g4 by ANTLR 4.13.1
+package antlr;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -172,7 +173,7 @@ public class ReactParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "antlr/ReactParser.g4"; }
+	public String getGrammarFileName() { return "ReactParser.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

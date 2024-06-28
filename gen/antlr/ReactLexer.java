@@ -1,4 +1,5 @@
-// Generated from /home/social/IdeaProjects/React/src/ReactLexer.g4 by ANTLR 4.13.1
+// Generated from /home/social/IdeaProjects/React/src/antlr/ReactLexer.g4 by ANTLR 4.13.1
+package antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -197,7 +198,7 @@ public class ReactLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "antlr/ReactLexer.g4"; }
+	public String getGrammarFileName() { return "ReactLexer.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

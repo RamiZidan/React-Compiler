@@ -152,7 +152,7 @@ useState: // done
     varModifier OpenBracket Identifier Comma Identifier CloseBracket Assign UseState OpenParen variable? CloseParen eos
     ;
 useRef: // done
-    varModifier Identifier Assign useRef OpenParen Identifier CloseParen eos
+    varModifier Identifier Assign UseRef OpenParen Identifier? CloseParen eos
     ;
 varDeclarationStatment: // done
     varModifier Identifier Assign variable eos
