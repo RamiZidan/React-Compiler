@@ -2,16 +2,17 @@ package ast.Statment.Component;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
+import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 
 public class Component extends Statment implements CodeGeneartion {
     public int line ;
     public String componentName ;
-    public ArrayList<String> params ;
+    public ArrayList<Variable> params ;
     public ArrayList<Statment> statments ;
     public JsxElement returnValue ;
-    Component(int line , String componentName , ArrayList<String> params, ArrayList<Statment> statments , JsxElement returnValue ){
+    public Component(int line , String componentName , ArrayList<Variable> params, ArrayList<Statment> statments , JsxElement returnValue ){
         this.statments = statments;
         this.params = params ;
         this.returnValue = returnValue;
@@ -38,11 +39,11 @@ public class Component extends Statment implements CodeGeneartion {
         this.statments = statments;
     }
 
-    public void setParams(ArrayList<String> params) {
+    public void setParams(ArrayList<Variable> params) {
         this.params = params;
     }
 
-    public ArrayList<String> getParams() {
+    public ArrayList<Variable> getParams() {
         return params;
     }
 

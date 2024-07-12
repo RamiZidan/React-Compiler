@@ -6,7 +6,7 @@ import ast.Statment.Variable.Variable;
 public class UseRef extends Hook implements CodeGeneartion {
     public String varName;
     public Variable value ;
-    UseRef(String varName , Variable value){
+    public UseRef(String varName , Variable value){
         this.varName = varName ;
         this.value = value ;
     }

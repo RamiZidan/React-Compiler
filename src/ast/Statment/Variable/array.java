@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class array extends Variable implements CodeGeneartion {
     ArrayList<Variable> varValue ;
-    array(int line, String varModifier , String varName , ArrayList<Variable> varValue ){
+    public array(int line, String varModifier , String varName , ArrayList<Variable> varValue ){
         super(line ,varModifier , varName , "array") ;
         this.varValue= varValue;
     }

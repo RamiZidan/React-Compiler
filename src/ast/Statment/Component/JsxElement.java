@@ -12,7 +12,7 @@ public class JsxElement extends Statment implements CodeGeneartion {
     public HashMap<String, Variable> attributes ;
     public String tagName ;
     public ArrayList<JsxElement> children ;
-    JsxElement(int line , String tagName , HashMap<String,Variable> attributes , ArrayList<JsxElement> children ){
+    public JsxElement(int line , String tagName , HashMap<String,Variable> attributes , ArrayList<JsxElement> children ){
         this.line = line ;
         this.tagName = tagName ;
         this.attributes = attributes;

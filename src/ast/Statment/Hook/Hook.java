@@ -6,7 +6,7 @@ import ast.Statment.Statment;
 public class Hook extends Statment implements CodeGeneartion {
     public int line ;
     public String hookName ;
-    Hook(){
+    public Hook(){
 
     }
 

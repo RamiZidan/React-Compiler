@@ -1,7 +1,433 @@
 package ast.visitor;
 
+import antlr.ReactParser;
 import antlr.ReactParserBaseVisitor;
+import ast.Program;
+import ast.Statment.Component.Component;
+import ast.Statment.Component.JsxElement;
+import ast.Statment.Export;
+import ast.Statment.FunctionStatment.Function;
+import ast.Statment.Hook.Hook;
+import ast.Statment.Hook.UseEffect;
+import ast.Statment.Hook.UseRef;
+import ast.Statment.Hook.UseState;
+import ast.Statment.IfStatment.Condition;
+import ast.Statment.IfStatment.If;
+import ast.Statment.Import;
+import ast.Statment.Statment;
+import ast.Statment.Variable.*;
+import ast.Statment.While;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BaseVisitor extends ReactParserBaseVisitor {
 
+    @Override
+    public Object visitProgram(ReactParser.ProgramContext ctx) {
+        Program program = new Program() ;
+        for(int i =0  ;i < ctx.statment().size() ;i++){
+            program.addStatment( (Statment) visitStatment( ctx.statment(i) ) ) ;
+        }
+        return program;
+    }
+
+    @Override
+    public Object visitStatment(ReactParser.StatmentContext ctx) {
+        Statment statment = new Statment();
+        if(ctx.varDeclarationStatment() != null ){
+            statment = (Statment) visitVarDeclarationStatment(ctx.varDeclarationStatment());
+        }
+        else if(ctx.hookDeclarationStatment() != null ){
+            statment = (Statment) visitHookDeclarationStatment(ctx.hookDeclarationStatment());
+        }
+        else if(ctx.assignStatment() != null){
+            statment = (Statment) visitAssignStatment(ctx.assignStatment());
+        }
+        else if(ctx.ifStatment() != null ){
+            statment = (Statment) visitIfStatment(ctx.ifStatment()) ;
+        }
+        else if(ctx.whileStatment() != null){
+            statment = (Statment) visitWhileStatment(ctx.whileStatment()) ;
+        }
+        else if(ctx.functionStatment() != null){
+            statment = (Statment) visitFunctionStatment(ctx.functionStatment()) ;
+        }
+        else if(ctx.component() != null){
+            statment = (Statment) visitComponent(ctx.component());
+        }
+        else if(ctx.importStatment() != null){
+            statment = (Statment) visitImportStatment(ctx.importStatment());
+        }
+        else if (ctx.exportStatment() != null){
+            statment = (Statment) visitExportStatment(ctx.exportStatment());
+        }
+        else {
+            // none ! (unreached)
+        }
+
+        return statment ;
+    }
+    // ##################################### VisitVarDeclarationStatment Start #####################################
+    @Override
+    public Object visitVarDeclarationStatment(ReactParser.VarDeclarationStatmentContext ctx) {
+        Variable varValue = (Variable) visitVariable(ctx.variable());
+        varValue.setVarModifier(ctx.varModifier().getText());
+        varValue.setVarName(ctx.Identifier().getText());
+        // add to symbole table
+        return varValue;
+    }
+
+    @Override
+    public Object visitVariable(ReactParser.VariableContext ctx) {
+        Variable variable  = new Variable();
+        if(ctx.array() != null ){
+            variable = (Variable) visitArray(ctx.array());
+        }
+        else if(ctx.object() != null ){
+            variable = (Variable) visitObject(ctx.object());
+        }
+        else if(ctx.equation() != null ){
+            variable = (Variable) visitEquation(ctx.equation());
+        }
+        else if(ctx.string() != null ){
+            variable = (Variable) visitString(ctx.string());
+        }
+        else if(ctx.Identifier() != null ){
+            variable.setVarValue(ctx.Identifier().getText());
+        }
+        return variable;
+    }
+
+    @Override
+    public Object visitArray(ReactParser.ArrayContext ctx) {
+        ArrayList<Variable> variableArrayList = new ArrayList<Variable>();
+        for(int i =0  ;i < ctx.variable().size() ;i++){
+            variableArrayList.add( (Variable) visitVariable( ctx.variable(i) )) ;
+        }
+        // putting varModifier , varName as (const , temp) temporary until it is returned and set in there
+        return new array( ctx.getStart().getLine()  , "const", "temp"  ,variableArrayList) ;
+    }
+
+    @Override
+    public Object visitObject(ReactParser.ObjectContext ctx) {
+        HashMap<String , Variable> objectValue = new HashMap<String,Variable>();
+        for(int i =0 ;i < ctx.Identifier().size() ;i++){
+            objectValue.put(ctx.Identifier(i).getText() , (Variable) visitVariable( ctx.variable(i)));
+        }
+        return new object( ctx.getStart().getLine() , "const", "temp" , objectValue ) ;
+    }
+
+    @Override
+    public Object visitEquation(ReactParser.EquationContext ctx) {
+        if(ctx.equation().size() != 2 ){
+            if(ctx.equation().isEmpty()){
+                return  new equation( Integer.parseInt( ctx.number().getText() ));
+            }
+            else{
+                // handle error it should be (equation operation equation ) or number (here there is none or more than 2 )
+                return new equation(1);
+            }
+        }
+        else {
+
+            return new equation( (equation) visitEquation(ctx.equation(0) ) , (equation) visitEquation(ctx.equation(1)) , ctx.operation().getText() ) ;
+        }
+    }
+
+    @Override
+    public Object visitString(ReactParser.StringContext ctx) {
+        return new string( ctx.getStart().getLine(), "const" , "temp" ,  ctx.StringLiteral().getText());
+    }
+    // ###################################  VisitVarDeclarationStatment End #################################################
+
+
+
+
+    // ###################################  VisitHookDeclarationStatment Start ##############################################
+    @Override
+    public Object visitHookDeclarationStatment(ReactParser.HookDeclarationStatmentContext ctx) {
+        Hook hook = new Hook();
+        if(ctx.useEffect() != null ){
+            hook = (Hook) visitUseEffect(ctx.useEffect());
+        }
+        else if(ctx.useState() != null  ){
+            hook = (Hook) visitUseState(ctx.useState()) ;
+        }
+        else if(ctx.useRef() != null  ){
+            hook = (Hook) visitUseRef(ctx.useRef()) ;
+        }
+        return hook ;
+    }
+
+    @Override
+    public Object visitUseEffect(ReactParser.UseEffectContext ctx) {
+        ArrayList<Statment> statmentArrayList = new ArrayList<Statment>() ;
+        for(int i =0 ; i< ctx.statment().size() ;i++){
+            statmentArrayList.add( (Statment) visitStatment( ctx.statment(i)) );
+        }
+
+        ArrayList<Variable> dependancyList = new ArrayList<Variable>() ;
+        for(int i =0  ;i < ctx.dependancyList().array().variable().size() ;i++){
+             dependancyList.add( (Variable) visitVariable( ctx.dependancyList().array().variable(i) ) ) ;
+        }
+        return new UseEffect(dependancyList ,  statmentArrayList ) ;
+    }
+
+    @Override
+    public Object visitUseState(ReactParser.UseStateContext ctx) {
+        String stateName = ctx.Identifier(0).getText() ;
+        String setStateFunction = ctx.Identifier(1).getText() ;
+        Variable variable = (Variable) visitVariable(ctx.variable());
+        return new UseState(stateName , setStateFunction , variable );
+    }
+
+    @Override
+    public Object visitUseRef(ReactParser.UseRefContext ctx) {
+        String refName = ctx.Identifier().getText() ;
+        Variable var = (Variable) visitVariable( ctx.variable() ) ;
+        return  new UseRef(refName , var) ;
+    }
+
+    // ###################################  VisitHookDeclarationStatment End ##############################################
+
+    // ###################################  AssignStatment Start ##############################################
+    @Override
+    public Object visitAssignStatment(ReactParser.AssignStatmentContext ctx) {
+        // maybe we need to create seperate class for this maybe no (IDRK)
+        String variableName = ctx.Identifier().getText();
+        Variable variable = (Variable) visitVariable( ctx.variable() );
+        variable.setVarName(variableName);;
+        return variable;
+    }
+    // ###################################  AssignStatment End  ##############################################
+
+    // ###################################  IfStatment Start  ##############################################
+    @Override
+    public Object visitIfStatment(ReactParser.IfStatmentContext ctx) {
+        ArrayList<Statment> statmentArrayList = new ArrayList<Statment>() ;
+        ArrayList< Condition > conditionArrayList = new ArrayList<Condition>();
+        for(int i =0 ; i < ctx.statment().size();i++){
+            statmentArrayList.add( (Statment) visitStatment(ctx.statment(i))  ) ;
+        }
+        for(int i =0  ;i < ctx.conditionsList().condition().size() ;i++){
+            if(ctx.conditionsList().condition(i).variable().size() == 2 ){
+                Condition condition = new Condition( (Variable) visitVariable(ctx.conditionsList().condition(i).variable(0) ) ,
+                        (Variable) visitVariable(ctx.conditionsList().condition(i).variable(1) ) ,
+                        ctx.conditionsList().condition(i).compare().getText()
+                );
+                conditionArrayList.add(  condition  ) ;
+            }
+            else if(ctx.conditionsList().condition(i).variable().size() == 1 ) {
+                Condition condition = new Condition( (Variable) visitVariable(ctx.conditionsList().condition(i).variable(0) ) );
+                conditionArrayList.add(  condition  ) ;
+            }
+            else { //  == 0 or > 2
+                // handle error
+            }
+        }
+        return new If( ctx.getStart().getLine(), conditionArrayList , statmentArrayList ) ;
+    }
+    // ###################################  IfStatment End  ##############################################
+
+    // ###################################  WhileStatment Start  ##############################################
+    @Override
+    public Object visitWhileStatment(ReactParser.WhileStatmentContext ctx) {
+        ArrayList<Statment> statmentArrayList = new ArrayList<Statment>() ;
+        ArrayList< Condition > conditionArrayList = new ArrayList<Condition>();
+        for(int i =0 ; i < ctx.statment().size();i++){
+            statmentArrayList.add( (Statment) visitStatment(ctx.statment(i))  ) ;
+        }
+        for(int i =0  ;i < ctx.conditionsList().condition().size() ;i++){
+            if(ctx.conditionsList().condition(i).variable().size() == 2 ){
+                Condition condition = new Condition( (Variable) visitVariable(ctx.conditionsList().condition(i).variable(0) ) ,
+                        (Variable) visitVariable(ctx.conditionsList().condition(i).variable(1) ) ,
+                        ctx.conditionsList().condition(i).compare().getText()
+                );
+                conditionArrayList.add(  condition  ) ;
+            }
+            else if(ctx.conditionsList().condition(i).variable().size() == 1 ) {
+                Condition condition = new Condition( (Variable) visitVariable(ctx.conditionsList().condition(i).variable(0) ) );
+                conditionArrayList.add(  condition  ) ;
+            }
+            else { //  == 0 or > 2
+                // handle error
+            }
+        }
+        return new While( ctx.getStart().getLine() , conditionArrayList , statmentArrayList  );
+    }
+    // ###################################  WhileStatment End  ##############################################
+
+    // ###################################  FunctionStatment Start ##############################################
+    @Override
+    public Object visitFunctionStatment(ReactParser.FunctionStatmentContext ctx) {
+        Function function = null ;
+        if(ctx.regularFunction() != null ){
+            function =  (Function) visitRegularFunctionStart( ctx.regularFunction().regularFunctionStart() );
+            Variable returnValue = (Variable) visitVariable(  ctx.regularFunction().functionBody().variableReturnStatment().variable() );
+            ArrayList<Statment> statmentArrayList = new ArrayList<Statment>() ;
+            for(int i =0 ; i< ctx.regularFunction().functionBody().statment().size() ;i++){
+                statmentArrayList.add( (Statment)  visitStatment( ctx.regularFunction().functionBody().statment(i) ) );
+            }
+            function.setStatments(statmentArrayList);
+            function.setReturnValue(returnValue);
+        }
+        else if(ctx.arrowFunction() != null ){
+            function =  (Function) visitArrowFunctionStart( ctx.arrowFunction().arrowFunctionStart());
+            Variable returnValue = (Variable) visitVariable(  ctx.arrowFunction().functionBody().variableReturnStatment().variable() );
+            ArrayList<Statment> statmentArrayList = new ArrayList<Statment>() ;
+            for(int i =0 ; i< ctx.arrowFunction().functionBody().statment().size() ;i++){
+                statmentArrayList.add( (Statment)  visitStatment( ctx.arrowFunction().functionBody().statment(i) ) );
+            }
+            function.setStatments(statmentArrayList);
+            function.setReturnValue(returnValue);
+        }
+        return function ;
+    }
+
+
+    @Override
+    public Object visitRegularFunctionStart(ReactParser.RegularFunctionStartContext ctx) {
+        String functionName = ctx.Identifier().getText() ;
+        ArrayList<Variable> params = new ArrayList<Variable>();
+        for(int i =0 ;i < ctx.params().variable().size();i++){
+            params.add( (Variable)  visitVariable( ctx.params().variable(i) )  );
+        }
+        return new Function(ctx.getStart().getLine() , functionName , params , null , null );
+    }
+
+    @Override
+    public Object visitArrowFunctionStart(ReactParser.ArrowFunctionStartContext ctx) {
+        String functionName = ctx.Identifier().getText() ;
+        ArrayList<Variable> params = new ArrayList<Variable>();
+        for(int i =0 ;i < ctx.params().variable().size();i++){
+            params.add( (Variable)  visitVariable( ctx.params().variable(i) )  );
+        }
+        return new Function(ctx.getStart().getLine() , functionName , params , null , null );
+    }
+
+    // ###################################  FunctionStatment End ##############################################
+
+
+    // ###################################  ImportStatment Start ##############################################
+    @Override
+    public Object visitImportStatment(ReactParser.ImportStatmentContext ctx) {
+        Import importStatment = null ;
+        if(ctx.namedImportStatment() != null ){
+            ArrayList<String> modules = new ArrayList<String>();
+            for(int i =0 ;i < ctx.namedImportStatment().listOfIdentifiers().Identifier().size() ;i++){
+                modules.add(ctx.namedImportStatment().listOfIdentifiers().Identifier(i).getText());
+            }
+            for(int i =0 ;i < ctx.namedImportStatment().listOfIdentifiers().hook().size() ;i++){
+                modules.add(ctx.namedImportStatment().listOfIdentifiers().hook(i).getText());
+            }
+            String moduleName = ctx.namedImportStatment().StringLiteral().getText();
+            importStatment = new Import( ctx.getStart().getLine() , moduleName , modules );
+        }
+        else if(ctx.defaultImportStatment() != null ){
+            ArrayList<String> modules = new ArrayList<String>();
+            for(int i =0 ;i < ctx.defaultImportStatment().listOfIdentifiers().Identifier().size() ;i++){
+                modules.add(ctx.defaultImportStatment().listOfIdentifiers().Identifier(i).getText());
+            }
+            for(int i =0 ;i < ctx.defaultImportStatment().listOfIdentifiers().hook().size() ;i++){
+                modules.add(ctx.defaultImportStatment().listOfIdentifiers().hook(i).getText());
+            }
+            String moduleName = ctx.defaultImportStatment().StringLiteral().getText();
+            importStatment = new Import( ctx.getStart().getLine() , moduleName , modules );
+        }
+        return importStatment;
+    }
+    // ###################################  ImportStatment End ##############################################
+
+    // ###################################  ExportStatment Start ##############################################
+    @Override
+    public Object visitExportStatment(ReactParser.ExportStatmentContext ctx) {
+        ArrayList<String> modules = new ArrayList<String>();
+        for(int i =0 ;i < ctx.Identifier().size();i++){
+            modules.add( ctx.Identifier(i).getText() );
+        }
+        String exportType = (ctx.Default() != null ? "Default" : "Named" ) ;
+        return new Export(ctx.getStart().getLine() , exportType , modules ) ;
+    }
+    // ###################################  ExportStatment End ##############################################
+
+
+    @Override
+    public Object visitComponent(ReactParser.ComponentContext ctx) {
+        Component component  = null ;
+        if(ctx.functionalComponent() != null ){
+           component = (Component)  visitFunctionalComponent(ctx.functionalComponent());
+        }
+        else if(ctx.classComponent() != null ){
+            component = (Component) visitClassComponent(ctx.classComponent());
+        }
+        return component;
+    }
+
+    @Override
+    public Object visitFunctionalComponent(ReactParser.FunctionalComponentContext ctx) {
+        Function function = new Function();
+        if(ctx.arrowFunctionStart() != null ){
+             function =  (Function) visitArrowFunctionStart( ctx.arrowFunctionStart());
+        }
+        else if(ctx.regularFunctionStart() != null ){
+            function =  (Function) visitRegularFunctionStart( ctx.regularFunctionStart());
+        }
+        String componentName = function.getFunctionName() ;
+        ArrayList<Statment> statmentArrayList = new ArrayList<Statment>();
+        for(int i =0 ;i < ctx.componentBody().statment().size();i++){
+            statmentArrayList.add(  (Statment) visitStatment(ctx.componentBody().statment(i) ) );
+        }
+        JsxElement returnValue = (JsxElement) visitJsxElement( ctx.componentBody().jsxReturnStatment().jsxElement() );
+        return new Component(ctx.getStart().getLine() , componentName, function.getParams() , statmentArrayList , returnValue   ) ;
+    }
+
+    @Override
+    public Object visitClassComponent(ReactParser.ClassComponentContext ctx) {
+
+        String componentName = ctx.Identifier().getText();
+        ArrayList<Statment> statmentArrayList = new ArrayList<Statment>();
+        ArrayList<Variable> params = new ArrayList<>( );
+        for(int i =0 ;i < ctx.params().variable().size();i++){
+            params.add( (Variable) visitVariable( ctx.params().variable(i)) ) ;
+        }
+        for(int i =0 ;i < ctx.componentBody().statment().size();i++){
+            statmentArrayList.add(  (Statment) visitStatment(ctx.componentBody().statment(i) ) );
+        }
+        JsxElement returnValue = (JsxElement) visitJsxElement( ctx.componentBody().jsxReturnStatment().jsxElement() );
+        return new Component(ctx.getStart().getLine() , componentName, params , statmentArrayList , returnValue   ) ;
+    }
+
+    @Override
+    public Object visitJsxElement(ReactParser.JsxElementContext ctx) {
+        String jsxTagName = "";
+        if(ctx.jsxTagName().size() == 1 ) {
+            jsxTagName = ctx.jsxTagName(0).getText() ;
+        }
+        else if(ctx.jsxTagName().size() == 2 ){
+            if(ctx.jsxTagName(0).getText() != ctx.jsxTagName(1).getText()) {
+                // handle error
+            }
+            else {
+                jsxTagName = ctx.jsxTagName(0).getText();
+            }
+        }
+        HashMap<String , Variable> jsxAttributes = new HashMap<>();
+        for(int i =0 ;i < ctx.jsxAtt().size();i++){
+            String jsxAttName = ctx.jsxAtt(i).jsxAttName().getText() ;
+            Variable value = (Variable) visitVariable( ctx.jsxAtt(i).jsxAttValue().variable() ) ;
+            jsxAttributes.put(jsxAttName , value) ;
+        }
+        ArrayList<JsxElement> children = new ArrayList<>();
+        for(int i =0 ;i < ctx.jsxEleContent().size() ;i++){
+           children.add( (JsxElement)  visitJsxElement( ctx.jsxEleContent(i).jsxElement() ) ) ;
+        }
+        return new JsxElement( ctx.getStart().getLine() , jsxTagName , jsxAttributes , children ) ;
+    }
+
 }
+
+
+
+

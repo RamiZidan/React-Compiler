@@ -10,29 +10,29 @@ program :
      statment*  EOF
     ;
 
-importStatment : // done
+importStatment : // done 1 ,
     namedImportStatment
     | defaultImportStatment
     ;
 
-namedImportStatment: // done
+namedImportStatment: // done 1 ,
     Import listOfIdentifiers  From StringLiteral  eos
     ;
 
-defaultImportStatment: // done
+defaultImportStatment: // done 1 ,
     Import OpenBrace listOfIdentifiers CloseBrace From StringLiteral eos
     ;
 
-listOfIdentifiers: // done
+listOfIdentifiers: // done 1 ,
      ((Identifier | hook ) Comma? )* (Identifier | hook)?  |
     ;
 
-hook: // done
+hook: // done 1 ,
     UseState
    |UseRef
    |UseEffect
    ;
-exportStatment: // done
+exportStatment: // done 1 ,
       Export Default? Identifier eos
     | Export OpenBrace (Identifier Comma?)* Identifier? CloseBrace eos
    ;
@@ -58,61 +58,61 @@ jsxReturnStatment:
     | Return jsxElement eos
     ;
 
-regularFunctionStart: // done
+regularFunctionStart: // done 1 ,
     Function_ Identifier OpenParen params CloseParen
     ;
 
-arrowFunctionStart: // done
+arrowFunctionStart: // done 1 ,
     varModifier Identifier Assign OpenParen params CloseParen Arrow
     ;
-params: // done
-    (Identifier Comma?)*
+params: // done 1 ,
+    (variable Comma?)*
     ;
 
 statment:
-        varDeclarationStatment // done
-      | hookDeclarationStatment // done
-      | assignStatment // done
-      | ifStatment // done
-      | whileStatment // done
-      | functionStatment // done
-      | functionalComponent
-      | importStatment // done
-      | exportStatment
+        varDeclarationStatment // done 1 , 2
+      | hookDeclarationStatment // done 1 , 2
+      | assignStatment // done 1 , 2
+      | ifStatment // done 1 , 2
+      | whileStatment // done 1 , 2
+      | functionStatment // done 1 , 2
+      | component
+      | importStatment // done 1 , 2
+      | exportStatment // done 1 , 2
     ;
-functionStatment: // done
+functionStatment: // done 1 ,
      regularFunction
     |arrowFunction
     ;
-regularFunction: // done
+regularFunction: // done 1 ,
     regularFunctionStart functionBody
     ;
-arrowFunction: // done
+arrowFunction: // done 1 ,
     arrowFunctionStart functionBody
     ;
-functionBody: // done
+functionBody: // done 1 ,
      OpenBrace statment* variableReturnStatment CloseBrace eos
     ;
-variableReturnStatment: // done
+variableReturnStatment: // done 1 ,
     Return variable eos
     ;
 
 
-ifStatment: // done
+ifStatment: // done 1 ,
     If OpenParen conditionsList CloseParen OpenBrace statment* CloseBrace
     ;
-whileStatment: // done
+whileStatment: // done 1 ,
     While OpenParen conditionsList CloseParen OpenBrace statment* CloseBrace
     ;
-conditionsList: // done
+conditionsList: // done 1 ,
      (condition (And | Or))* condition
     ;
 
-condition: // done
+condition: // done 1 ,
      OpenParen? variable compare variable CloseParen?
     | variable
     ;
-compare: // done
+compare: // done 1 ,
       GreaterThan
     | LessThan
     | GreaterThanEquals
@@ -123,13 +123,13 @@ compare: // done
     | IdentityNotEquals
     ;
 
-hookDeclarationStatment: // done
+hookDeclarationStatment: // done 1 , 2
      useEffect
     |useState
     |useRef
     ;
-assignStatment: // done
-    Identifier Assign equation eos
+assignStatment: // done 1 ,
+    Identifier Assign variable eos
     ;
 
 equation:
@@ -142,43 +142,43 @@ operation:
     | Divide
     | Multiply
     ;
-useEffect: // done
+useEffect: // done 1 , 2
     UseEffect OpenParen OpenParen params CloseParen Arrow OpenBrace statment* CloseBrace Comma dependancyList CloseParen eos
     ;
-dependancyList: // done
+dependancyList: // done 1 , 2
     array
     ;
-useState: // done
+useState: // done 1 , 2
     varModifier OpenBracket Identifier Comma Identifier CloseBracket Assign UseState OpenParen variable? CloseParen eos
     ;
-useRef: // done
-    varModifier Identifier Assign UseRef OpenParen Identifier? CloseParen eos
+useRef: // done 1 , 2
+    varModifier Identifier Assign UseRef OpenParen variable? CloseParen eos
     ;
-varDeclarationStatment: // done
+varDeclarationStatment: // done 1 ,
     varModifier Identifier Assign variable eos
     ;
-variable: // done
+variable: // done 1 ,
       array
     | object
     | equation
     | string
     | Identifier
     ;
-array: // done
+array: // done 1 ,
     OpenBracket (variable Comma?)* CloseBracket
     ;
-object: // done
+object: // done 1 ,
     OpenBrace ( Identifier Colon variable Comma?)* CloseBrace
     ;
-number: // done
+number: // done 1 ,
     DecimalLiteral
     ;
-string:// done
+string:// done 1 ,
     StringLiteral
     ;
 
 
-varModifier: // done
+varModifier: // done 1 ,
       Var
     | Let
     | Const
@@ -187,7 +187,7 @@ eos:
     SemiColon
     ;
 
-// done
+// done 1 ,
 jsxElement:LessThan jsxTagName jsxAtt* GreaterThan jsxEleContent* LessThan Divide jsxTagName GreaterThan // <tag att> content </tag>
           |LessThan jsxTagName jsxAtt* Divide GreaterThan                                             // <tag att />
 ;
@@ -196,7 +196,7 @@ jsxTagName: Identifier ;
 //jsxAttName: Source | ClickAtt | ClassName | Ref | Height | Width;
 jsxAttName: Identifier ;
 
-jsxAttValue:      StringLiteral | OpenBrace variable? CloseBrace;             // " " Or {expr}
+jsxAttValue:      variable | OpenBrace variable? CloseBrace;             // " " Or {expr}
 jsxAtt:                       jsxAttName Assign jsxAttValue;             // att=val
 jsxEleContent:
     jsxElement

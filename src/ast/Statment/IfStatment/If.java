@@ -9,7 +9,7 @@ public class If extends Statment implements CodeGeneartion {
     public int line;
     public ArrayList<Condition> conditionsList ;
     public ArrayList<Statment> statments ;
-    If(int line , ArrayList<Condition> conditionsList , ArrayList<Statment> statments){
+    public If(int line , ArrayList<Condition> conditionsList , ArrayList<Statment> statments){
         this.conditionsList = conditionsList ;
         this.statments = statments;
         this.setLine(line);

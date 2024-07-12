@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class object extends Variable implements CodeGeneartion {
     HashMap<String,Variable> varValue ;
-    object(int line ,String varModifier , String varName , HashMap<String,Variable> varValue){
+    public object(int line ,String varModifier , String varName , HashMap<String,Variable> varValue){
         super(line,varModifier , varName , "object");
         this.varValue = varValue ;
     }

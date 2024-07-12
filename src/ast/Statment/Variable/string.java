@@ -5,7 +5,7 @@ import ast.CodeGeneartion;
 public class string extends Variable implements CodeGeneartion {
     public String varValue = "" ;
 
-    string(int line ,String varModifier , String varName , String varValue ){
+    public string(int line ,String varModifier , String varName , String varValue ){
         super(line,varModifier , varName , "string" ) ;
         this.varValue = varValue;
 

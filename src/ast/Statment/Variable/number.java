@@ -4,11 +4,11 @@ import ast.CodeGeneartion;
 
 public class number extends Variable implements CodeGeneartion {
     public int varValue = 0 ;
-    number(int line ,String varModifier , String varName  , String varValue ){
+    public number(int line ,String varModifier , String varName  , String varValue ){
         super(line,varModifier , varName , "string" ) ;
         this.varValue = Integer.parseInt(varValue) ;
     }
-    number(int line,String varModifier , String varName, int varValue ){
+    public number(int line,String varModifier , String varName, int varValue ){
         super(line,varModifier , varName , "string" ) ;
         this.varValue = varValue  ;
     }

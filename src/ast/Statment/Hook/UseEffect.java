@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UseEffect extends Hook implements CodeGeneartion {
     public ArrayList<Variable> dependencyList ;
     public ArrayList<Statment> statmentsList ;
-    UseEffect(ArrayList<Variable> dependencyList , ArrayList<Statment> statmentsList){
+    public UseEffect(ArrayList<Variable> dependencyList , ArrayList<Statment> statmentsList){
         this.dependencyList = dependencyList;
         this.statmentsList= statmentsList;
     }

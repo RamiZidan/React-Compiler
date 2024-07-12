@@ -9,15 +9,18 @@ import java.util.ArrayList;
 public class Function extends Statment implements CodeGeneartion {
     public int line ;
     public String functionName ;
-    public ArrayList<String> params ;
+    public ArrayList<Variable> params ;
     public ArrayList<Statment> statments ;
     public Variable returnValue ;
-    Function(int line , String functionName , ArrayList<String> params, ArrayList<Statment> statments , Variable returnValue ){
+    public Function(int line , String functionName , ArrayList<Variable> params, ArrayList<Statment> statments , Variable returnValue ){
         this.statments = statments;
         this.params = params ;
         this.returnValue = returnValue;
         this.functionName = functionName ;
         this.setLine(line);
+    }
+    public Function(){
+
     }
 
     public String getFunctionName() {
@@ -39,11 +42,11 @@ public class Function extends Statment implements CodeGeneartion {
         this.statments = statments;
     }
 
-    public void setParams(ArrayList<String> params) {
+    public void setParams(ArrayList<Variable> params) {
         this.params = params;
     }
 
-    public ArrayList<String> getParams() {
+    public ArrayList<Variable> getParams() {
         return params;
     }
 

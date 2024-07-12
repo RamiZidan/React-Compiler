@@ -2,16 +2,16 @@ package ast.Statment.Variable;
 
 import ast.Statment.Statment;
 
-abstract public class Variable extends Statment {
+public class Variable extends Statment {
     public String varModifier;
     public String varName ;
     public String varValue ;
     public String varType ;
     public int line ;
 
-    Variable(){
+    public Variable(){
     }
-    Variable(int line ,String varModifier , String varName , String varType){
+    public Variable(int line ,String varModifier , String varName , String varType){
         this.varModifier = varModifier ;
         this.varName = varName ;
         this.varType = varType ;

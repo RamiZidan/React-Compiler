@@ -7,7 +7,7 @@ public class UseState extends Hook implements CodeGeneartion {
     public String stateName;
     public String setStateFunctionName ;
     public Variable value ;
-    UseState(String stateName , String setStateName , Variable value){
+    public UseState(String stateName , String setStateName , Variable value){
         this.stateName = stateName ;
         this.setStateFunctionName = setStateName ;
         this.value = value ;

@@ -28,10 +28,14 @@ public class Main {
 //            lexer.addErrorListener(syntaxError.INSTANCE);
             CommonTokenStream token  = new CommonTokenStream(lexer);
             ReactParser parser = new ReactParser(token);
+//            System.out.println(cs);
 //            parser.removeErrorListeners();
 //            parser.addErrorListener(syntaxError.INSTANCE);
+
             ParseTree tree = parser.program();
+
             BaseVisitor baseVisitor=  new BaseVisitor();
+//            System.out.println(baseVisitor);
             baseVisitor.visit(tree);
 //            System.out.println("\n\n\n"+"******* SYMPOL TABLE  *******"+"\n");
 //            for (int i=0;i<baseVisitor.AST.size();i++){

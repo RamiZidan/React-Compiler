@@ -10,7 +10,7 @@ public class Export extends Statment implements CodeGeneartion {
     public ArrayList<String> items ;
     public String exportType ;
 
-    Export(int line , String exportType, ArrayList<String> items){
+    public Export(int line , String exportType, ArrayList<String> items){
         this.exportType = exportType ;
         this.items = items;
         this.setLine(line);

@@ -9,7 +9,7 @@ public class Import extends Statment implements CodeGeneartion {
     public String moduleName;
     public ArrayList<String> items ;
 
-    Import(int line ,String moduleName , ArrayList<String> items){
+    public Import(int line ,String moduleName , ArrayList<String> items){
         this.moduleName = moduleName ;
         this.items = items;
         this.setLine(line);
