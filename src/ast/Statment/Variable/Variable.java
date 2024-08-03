@@ -4,7 +4,7 @@ import ast.Statment.Statment;
 
 public class Variable extends Statment {
     public String varModifier;
-    public String varName ;
+    public String varName = "" ;
     public String varValue ;
     public String varType ;
     public int line ;
@@ -48,8 +48,12 @@ public class Variable extends Statment {
     public void setVarModifier(String varModifier){
         this.varModifier = varModifier ;
     }
-    public String symbol(){ return "Variable {" + varName + " = " + varValue + " }" ;}
+    public String symbol(){ return "Variable {\n" + varName + " = " + varValue + " }\n" ;}
     public String toString(){
         return symbol();
+    }
+    public Boolean isVarNameNull(){
+
+        return varName.isEmpty();
     }
 }

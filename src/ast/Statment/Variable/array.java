@@ -31,7 +31,12 @@ public class array extends Variable implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        return "Variable { " + "name=" + varName + ", value=" + varValue.toString() + " }";
+        String str =  "Variable { \n type=array\n" ;
+        if(!isVarNameNull()){
+            str += "name={" + varName + "}" ;
+        }
+        str+= ", \n value={" + varValue.toString() + "}\n }\n";
+        return str ;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class UseState extends Hook implements CodeGeneartion {
     @Override
 
     public String symbol() {
-        return "Hook { " + " type=useState , "  + " stateName=" + stateName + ", setStateFunction=" + setStateFunctionName + ", value=" + value.toString()  + " }" ;
+        return "Hook { \n" + " type=useState , "  + " stateName={" + stateName + "}\n, setStateFunction={" + setStateFunctionName + "}\n, value={" + value.toString()  + "}\n }\n" ;
     }
 
 }

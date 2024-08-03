@@ -31,7 +31,7 @@ public class Import extends Statment implements CodeGeneartion {
         return symbol();
     }
     public String symbol(){
-        return "Import Statment { " + "module=" + moduleName + " items=" + items.toString() + " }" ;
+        return "Import Statment { \n" + "module={" + moduleName + "} items={" + items.toString() + "}\n }\n" ;
     }
     @Override
     public String generate() {

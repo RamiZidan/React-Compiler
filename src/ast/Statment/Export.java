@@ -32,7 +32,7 @@ public class Export extends Statment implements CodeGeneartion {
         return symbol();
     }
     public String symbol(){
-        return "Export Statment { " + "type=" + exportType + " items=" + items.toString() + " }" ;
+        return "Export Statment { \n" + "type={" + exportType + "} items={" + items.toString() + "}\n }\n" ;
     }
     @Override
     public String generate() {

@@ -63,12 +63,15 @@ public class Component extends Statment implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        String str = "Function { " + "params=" + params.toString() ;
-        str += ", statments=" ;
+        String str = "Function { \n" +
+                        "params={" + params.toString() + "}\n" ;
+        str += ", statments={" ;
         for(int i =0  ;i < statments.size() ;i++){
-            str += statments.get(i).toString();
+            str += statments.get(i).toString() + "\n";
         }
-        str += ", returnStatment=" + returnValue.toString() + " }" ;
+        str += "}\n" ;
+        str += ", returnStatment={" + returnValue.toString() + "}\n";
+        str += "}\n" ;
         return str ;
     }
     public String generate(){

@@ -33,7 +33,7 @@ public class UseEffect extends Hook implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        return "Hook { " + " type=useEffect , "  + " depenecyList=" + dependencyList.toString()  + ", statmentsList=" + statmentsList.toString()   + " }" ;
+        return "Hook { \n" + " type=useEffect ,\n "  + " depenecyList={" + dependencyList.toString()  + "}\n, statmentsList={\n" + statmentsList.toString()   + "\n }\n" ;
     }
 
 }

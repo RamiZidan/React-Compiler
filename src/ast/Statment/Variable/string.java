@@ -4,7 +4,9 @@ import ast.CodeGeneartion;
 
 public class string extends Variable implements CodeGeneartion {
     public String varValue = "" ;
+    public string (){
 
+    }
     public string(int line ,String varModifier , String varName , String varValue ){
         super(line,varModifier , varName , "string" ) ;
         this.varValue = varValue;
@@ -22,7 +24,13 @@ public class string extends Variable implements CodeGeneartion {
     }
     @Override
     public String symbol(){
-        return "Variable { " + "name=" + varName + ", value=" + varValue + " }";
+
+        String str = "Variable { \n type=string\n" ;
+        if(!isVarNameNull()){
+            str += "name={" + varName + "}" ;
+        }
+        str+= ", value={" + varValue + "}\n }\n";
+        return str;
     }
     @Override
     public String generate() {

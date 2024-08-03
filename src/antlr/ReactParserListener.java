@@ -288,16 +288,6 @@ public interface ReactParserListener extends ParseTreeListener {
 	 */
 	void exitAssignStatment(ReactParser.AssignStatmentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ReactParser#equation}.
-	 * @param ctx the parse tree
-	 */
-	void enterEquation(ReactParser.EquationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ReactParser#equation}.
-	 * @param ctx the parse tree
-	 */
-	void exitEquation(ReactParser.EquationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ReactParser#operation}.
 	 * @param ctx the parse tree
 	 */
@@ -407,6 +397,16 @@ public interface ReactParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitString(ReactParser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquation(ReactParser.EquationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquation(ReactParser.EquationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ReactParser#varModifier}.
 	 * @param ctx the parse tree

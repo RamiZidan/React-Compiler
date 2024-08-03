@@ -66,12 +66,13 @@ public class Function extends Statment implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        String str =  "Function { " + "params=" + params.toString() ;
-        str +=  ", statments= { " ;
+        String str =  "Function { \n " + "params={" + params.toString()  + "}\n" ;
+        str +=  ", statments= { \n" ;
         for(int i =0  ;i < statments.size() ;i++){
             str+= statments.get(i).toString();
         }
-        str += ", returnStatment=" + returnValue.toString() + " }" ;
+        str += "}\n";
+        str += ", returnStatment={" + returnValue.toString() + "}\n }\n" ;
         return str ;
 
     }

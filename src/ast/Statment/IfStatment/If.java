@@ -34,12 +34,15 @@ public class If extends Statment implements CodeGeneartion {
         return symbol();
     }
     public String symbol(){
-        String str =  "If statment { " + "conditions=" + conditionsList.toString()  ;
-         str += ", statments= {" ;
+        String str =  "If statment { \n" + "conditions={" + conditionsList.toString()  +"}\n" ;
+         str += ", statments= {\n" ;
          for(int i =0  ;i < statments.size();i++){
+             str += "\n" ;
              str += statments.toString() ;
+             str += "\n" ;
          }
-         str+= "}" ;
+         str+= "}\n" ;
+         str += "}\n" ;
          return str ;
     }
     @Override

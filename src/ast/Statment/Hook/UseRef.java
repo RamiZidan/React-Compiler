@@ -31,7 +31,7 @@ public class UseRef extends Hook implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        return "Hook { " + " type=useRef , "  + " hookName=" + varName + ", value=" + value.toString() + " }" ;
+        return "Hook { \n" + " type=useRef , \n"  + " hookName={" + varName + "}\n, value={" + value.toString() + " }\n }\n" ;
     }
 
 

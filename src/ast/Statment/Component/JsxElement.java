@@ -60,13 +60,17 @@ public class JsxElement extends Statment implements CodeGeneartion {
         return symbol();
     }
     public String symbol(){
-        String str = "JsxElement { " ;
-        str+= "Tag=" + tagName + " , ";
-        str+= attributes.toString() ;
+        String str = "JsxElement { " + "\n" ;
+        str+= "Tag={" + tagName + "} , \n";
+        str+= "attributes={" +  attributes.toString() + "}\n" ;
+        str += "Children={\n" ;
         for(int i =0  ;i < children.size();i++){
+            str += "\n" ;
             str+= children.get(i).symbol();
+            str += "\n" ;
         }
-        str+= "}" ;
+        str += "}\n" ;
+        str+= "}\n" ;
         return str ;
     }
 

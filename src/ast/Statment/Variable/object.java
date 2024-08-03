@@ -28,7 +28,12 @@ public class object extends Variable implements CodeGeneartion {
     }
     @Override
     public String symbol(){
-        return "Variable { " + "name=" + varName + " value=" + varValue.toString() + " }";
+        String str = "Variable { \n type=object\n" ;
+        if(!isVarNameNull()){
+            str += "name={" + varName + "}" ;
+        }
+        str +=  ", value={" + varValue.toString() + "}\n }\n";
+        return str;
     }
 
     @Override

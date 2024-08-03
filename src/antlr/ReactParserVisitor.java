@@ -179,12 +179,6 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignStatment(ReactParser.AssignStatmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ReactParser#equation}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEquation(ReactParser.EquationContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ReactParser#operation}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -250,6 +244,12 @@ public interface ReactParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitString(ReactParser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ReactParser#equation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquation(ReactParser.EquationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ReactParser#varModifier}.
 	 * @param ctx the parse tree

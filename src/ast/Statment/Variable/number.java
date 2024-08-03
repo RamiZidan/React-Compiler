@@ -4,6 +4,9 @@ import ast.CodeGeneartion;
 
 public class number extends Variable implements CodeGeneartion {
     public int varValue = 0 ;
+    public number(){
+
+    }
     public number(int line ,String varModifier , String varName  , String varValue ){
         super(line,varModifier , varName , "string" ) ;
         this.varValue = Integer.parseInt(varValue) ;
@@ -31,7 +34,12 @@ public class number extends Variable implements CodeGeneartion {
     }
     @Override
     public String symbol() {
-        return "Variable { " + "name=" + varName + ", value=" + Integer.toString(varValue) + " }";
+        String str = "Variable { \n type=number\n" ;
+        if(!isVarNameNull()){
+            str += "name={" + varName + "}" ;
+        }
+        str += ", value={" + Integer.toString(varValue) + "}\n }\n";
+        return str ;
     }
 
     @Override

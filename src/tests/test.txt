@@ -1,15 +1,13 @@
 import React from 'react';
 
-const products = [
-    1 , '2' , "3" , {x:4} , [1 , 2 ]
-];
+const products ;
 
 
 
 
 function App(param){
     const x = 1 ;
-    const array = [ 1 , 2 , 3 ] ;
+    const array = [  ] ;
     if(x == '1' ){
 
     }
@@ -23,6 +21,8 @@ function App(param){
     const ref = useRef();
 
     return <div> hello  </div>;
+
+
 };
 
 const App2 = (param)=>{

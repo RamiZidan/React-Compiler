@@ -4,6 +4,8 @@
 ////import sympolTable.SymbolTable;
 ////import sympolTable.SymbolTable;
 
+import ast.Program;
+import ast.Statment.Statment;
 import ast.visitor.BaseVisitor;
 import antlr.ReactParser;
 import antlr.ReactLexer;
@@ -11,6 +13,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class Main {
@@ -33,10 +37,12 @@ public class Main {
 //            parser.addErrorListener(syntaxError.INSTANCE);
 
             ParseTree tree = parser.program();
-
+            System.out.println("Tree " + tree.toString());
             BaseVisitor baseVisitor=  new BaseVisitor();
 //            System.out.println(baseVisitor);
-            baseVisitor.visit(tree);
+            Program program = (Program) baseVisitor.visit(tree);
+            program.print_ast();
+            baseVisitor.symbolTable.printTable();
 //            System.out.println("\n\n\n"+"******* SYMPOL TABLE  *******"+"\n");
 //            for (int i=0;i<baseVisitor.AST.size();i++){
 //                System.out.println(baseVisitor.AST.get(i).symbol());

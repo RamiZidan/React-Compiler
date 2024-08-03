@@ -132,10 +132,7 @@ assignStatment: // done 1 ,
     Identifier Assign variable eos
     ;
 
-equation:
-     equation operation equation
-    | number
-    ;
+
 operation:
     Plus
     | Minus
@@ -155,11 +152,12 @@ useRef: // done 1 , 2
     varModifier Identifier Assign UseRef OpenParen variable? CloseParen eos
     ;
 varDeclarationStatment: // done 1 ,
-    varModifier Identifier Assign variable eos
+    varModifier Identifier (Assign variable)? eos
     ;
 variable: // done 1 ,
       array
     | object
+    | number
     | equation
     | string
     | Identifier
@@ -175,6 +173,10 @@ number: // done 1 ,
     ;
 string:// done 1 ,
     StringLiteral
+    ;
+equation:
+     equation operation equation
+    | number
     ;
 
 

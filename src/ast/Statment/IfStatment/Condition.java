@@ -19,14 +19,15 @@ public class Condition  {
     }
     public String symbol(){
 
-        String str = "Conditon { " ;
+        String str = "Conditon { \n" ;
         if(variable1 != null){
-            str+= "Variable-1=" + variable1.toString();
+            str+= "Variable-1={" + variable1.toString() + "}\n";
         }
-        str+= "Compare="+ compare;
+        str+= "Compare Operator={"+ compare + "}\n";
         if(variable2 != null){
-            str+= "Variable-2" + variable2.toString();
+            str+= "Variable-2={" + variable2.toString() + "}\n" ;
         }
+        str += "}\n" ;
         return str ;
     }
 

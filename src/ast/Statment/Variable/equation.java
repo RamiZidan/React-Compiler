@@ -37,5 +37,22 @@ public class equation extends Variable {
     public void setVarValue(int value ) {
         this.value = value ;
     }
+    public String toString(){
+//        return "Equation {}\n" ;
+        String str = "Equation{ \n" ;
+        if(left!=null){
+            str += "Left { \n" + left.toString()  + "}\n" ;
+        }
+        if(opeartion!=null){
+            str += "Opeartion" + opeartion + "\n" ;
+        }
+        if(right!=null){
+            str += "Right { \n" + right.toString()  + "}\n" ;
+        }
+        str += "Value " + value + "\n" ;
+        str += "}\n" ;
+        return str ;
+    }
+
 
 }
