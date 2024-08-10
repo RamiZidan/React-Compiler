@@ -5,8 +5,9 @@ import ast.Statment.IfStatment.Condition;
 
 import java.util.ArrayList;
 
-public class While extends Statment implements CodeGeneartion {
+public class While extends Statment  {
     public int line;
+
     public ArrayList<Condition> conditionsList ;
     public ArrayList<Statment> statments ;
     public While(int line , ArrayList<Condition> conditionsList , ArrayList<Statment> statments){
@@ -44,7 +45,8 @@ public class While extends Statment implements CodeGeneartion {
     }
 
     public String generate() {
-        return "";
+        String str = "While( " + conditionsList.toString() + ")\n" + " {" ;
+        return str;
     }
     public void setLine(int line){
         this.line = line ;

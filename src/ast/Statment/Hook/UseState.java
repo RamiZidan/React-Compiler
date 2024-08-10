@@ -3,7 +3,7 @@ package ast.Statment.Hook;
 import ast.CodeGeneartion;
 import ast.Statment.Variable.Variable;
 
-public class UseState extends Hook implements CodeGeneartion {
+public class UseState extends Hook  {
     public String stateName;
     public String setStateFunctionName ;
     public Variable value ;
@@ -31,10 +31,6 @@ public class UseState extends Hook implements CodeGeneartion {
     public Variable getValue() {
         return value;
     }
-
-    public String generate() {
-        return "";
-    }
     public String toString(){
         return symbol();
     }
@@ -44,4 +40,7 @@ public class UseState extends Hook implements CodeGeneartion {
         return "Hook { \n" + " type=useState , "  + " stateName={" + stateName + "}\n, setStateFunction={" + setStateFunctionName + "}\n, value={" + value.toString()  + "}\n }\n" ;
     }
 
+    public String generate() {
+        return "";
+    }
 }

@@ -1,6 +1,7 @@
 package ast.Statment.Variable;
 
 import ast.CodeGeneartion;
+import org.antlr.v4.runtime.misc.Pair;
 
 public class number extends Variable implements CodeGeneartion {
     public int varValue = 0 ;
@@ -43,8 +44,8 @@ public class number extends Variable implements CodeGeneartion {
     }
 
     @Override
-    public String generate() {
-        return "";
+    public String generateVarValue(){
+        return Integer.toString(varValue) ;
     }
 
 

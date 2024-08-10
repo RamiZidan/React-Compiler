@@ -42,7 +42,9 @@ public class Main {
 //            System.out.println(baseVisitor);
             Program program = (Program) baseVisitor.visit(tree);
             program.print_ast();
+            program.generateCode();
             baseVisitor.symbolTable.printTable();
+
 //            System.out.println("\n\n\n"+"******* SYMPOL TABLE  *******"+"\n");
 //            for (int i=0;i<baseVisitor.AST.size();i++){
 //                System.out.println(baseVisitor.AST.get(i).symbol());

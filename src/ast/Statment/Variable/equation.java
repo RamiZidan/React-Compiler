@@ -55,4 +55,5 @@ public class equation extends Variable {
     }
 
 
+
 }

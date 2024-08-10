@@ -1,6 +1,7 @@
 package ast.Statment.IfStatment;
 
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 public class Condition  {
     public Variable variable1 ;
@@ -29,6 +30,15 @@ public class Condition  {
         }
         str += "}\n" ;
         return str ;
+    }
+
+    public Pair<String,String> generate(){
+        String js = "(" ;
+        js += variable1.generateVarValue() ;
+        js += compare ;
+        js += variable2.generateVarValue() ;
+        js += ")" ;
+        return new Pair<String,String>( "",js) ;
     }
 
 

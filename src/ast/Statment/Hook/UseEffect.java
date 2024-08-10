@@ -3,10 +3,11 @@ package ast.Statment.Hook;
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
-public class UseEffect extends Hook implements CodeGeneartion {
+public class UseEffect extends Hook  {
     public ArrayList<Variable> dependencyList ;
     public ArrayList<Statment> statmentsList ;
     public UseEffect(ArrayList<Variable> dependencyList , ArrayList<Statment> statmentsList){
@@ -25,15 +26,21 @@ public class UseEffect extends Hook implements CodeGeneartion {
     public ArrayList<Statment> getStatmentsList(){
         return statmentsList;
     }
-    public String generate() {
-        return "";
-    }
+
     public String toString(){
         return symbol();
     }
     @Override
     public String symbol() {
         return "Hook { \n" + " type=useEffect ,\n "  + " depenecyList={" + dependencyList.toString()  + "}\n, statmentsList={\n" + statmentsList.toString()   + "\n }\n" ;
+    }
+    public Pair<String,String> generate() {
+        String html = "" ;
+        String js = "window.onload = () => { \n" ;
+        
+        js += "}\n";
+
+        return new Pair<>(html,js);
     }
 
 }

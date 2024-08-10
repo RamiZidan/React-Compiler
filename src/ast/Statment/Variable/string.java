@@ -24,17 +24,12 @@ public class string extends Variable implements CodeGeneartion {
     }
     @Override
     public String symbol(){
-
         String str = "Variable { \n type=string\n" ;
         if(!isVarNameNull()){
             str += "name={" + varName + "}" ;
         }
         str+= ", value={" + varValue + "}\n }\n";
         return str;
-    }
-    @Override
-    public String generate() {
-        return "";
     }
 
 

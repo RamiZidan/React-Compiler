@@ -4,7 +4,7 @@ import ast.CodeGeneartion;
 
 import java.util.ArrayList;
 
-public class Import extends Statment implements CodeGeneartion {
+public class Import extends Statment {
     public int line ;
     public String moduleName;
     public ArrayList<String> items ;

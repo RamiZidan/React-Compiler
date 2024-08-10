@@ -6,7 +6,7 @@ import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 
-public class Function extends Statment implements CodeGeneartion {
+public class Function extends Statment  {
     public int line ;
     public String functionName ;
     public ArrayList<Variable> params ;
@@ -72,7 +72,8 @@ public class Function extends Statment implements CodeGeneartion {
             str+= statments.get(i).toString();
         }
         str += "}\n";
-        str += ", returnStatment={" + returnValue.toString() + "}\n }\n" ;
+        str += ", returnStatment={" + returnValue.toString() + "}\n" +
+                " }\n" ;
         return str ;
 
     }

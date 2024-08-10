@@ -20,8 +20,19 @@ function App(param){
     }, [ x ]);
     const ref = useRef();
 
-    return <div> hello  </div>;
+    const handleClick = ()=>{
+        const y = 3 ;
+        return y ;
+    };
 
+    return <>
+         <div>
+            <div>
+                <a href="https://www.google.com" > Google </a>
+                <button onClick={handleClick} > click me </button>
+            </div>
+         </div>
+     </>;
 
 };
 

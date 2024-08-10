@@ -512,17 +512,17 @@ public class BaseVisitor extends ReactParserBaseVisitor {
         String jsxTagName = "";
 
         if(ctx.jsxTagName().size() == 1 ) {
-            if(ctx.jsxTagName()== null ) {
+            if(ctx.jsxTagName(0).Identifier() == null ) {
                 symbolTable.addSyntaxError(ctx.getStart().getLine() , "JsxTag name is null ");
             }
-            jsxTagName = ctx.jsxTagName(0).getText() ;
+            jsxTagName = ctx.jsxTagName(0).Identifier().getText().toString();
         }
         else if(ctx.jsxTagName().size() == 2 ){
-            if(!ctx.jsxTagName(0).getText().equals(ctx.jsxTagName(1).getText())) {
+            if(!ctx.jsxTagName(0).Identifier().getText().equals(ctx.jsxTagName(1).Identifier().getText())) {
                 symbolTable.addSyntaxError(ctx.getStart().getLine() , "Jsx Tag names does not match");
             }
             else {
-                jsxTagName = ctx.jsxTagName(0).getText();
+                jsxTagName = ctx.jsxTagName(0).Identifier().getText();
             }
         }
         HashMap<String , Variable> jsxAttributes = new HashMap<>();
@@ -541,7 +541,10 @@ public class BaseVisitor extends ReactParserBaseVisitor {
 
             }
         }
-        return new JsxElement( ctx.getStart().getLine() , jsxTagName , jsxAttributes , children ) ;
+
+        JsxElement jsxElement = new JsxElement( ctx.getStart().getLine() , jsxTagName , jsxAttributes , children ) ;
+        jsxElement.setRaw(ctx.getText());
+        return jsxElement ;
     }
 
 }

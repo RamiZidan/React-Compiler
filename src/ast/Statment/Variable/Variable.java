@@ -1,6 +1,7 @@
 package ast.Statment.Variable;
 
 import ast.Statment.Statment;
+import org.antlr.v4.runtime.misc.Pair;
 
 public class Variable extends Statment {
     public String varModifier;
@@ -8,7 +9,6 @@ public class Variable extends Statment {
     public String varValue ;
     public String varType ;
     public int line ;
-
     public Variable(){
     }
     public Variable(int line ,String varModifier , String varName , String varType){
@@ -55,5 +55,12 @@ public class Variable extends Statment {
     public Boolean isVarNameNull(){
 
         return varName.isEmpty();
+    }
+    public Pair<String,String> generate(){
+        String js = varModifier + " " + varName + " = " + generateVarValue() ;
+        return new Pair<>("",js);
+    }
+    public String generateVarValue(){
+        return varValue.toString();
     }
 }

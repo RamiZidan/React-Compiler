@@ -6,7 +6,7 @@ import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 
-public class Component extends Statment implements CodeGeneartion {
+public class Component extends Statment  {
     public int line ;
     public String componentName ;
     public ArrayList<Variable> params ;
@@ -75,6 +75,9 @@ public class Component extends Statment implements CodeGeneartion {
         return str ;
     }
     public String generate(){
-        return "";
+        String str = "COMP\n" ;
+        str += returnValue.getRaw();
+        return str; 
+
     }
 }

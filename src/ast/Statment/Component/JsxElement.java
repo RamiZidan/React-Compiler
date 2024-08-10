@@ -1,17 +1,20 @@
 package ast.Statment.Component;
-
+import static java.util.Map.entry;
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
 import ast.Statment.Variable.Variable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class JsxElement extends Statment implements CodeGeneartion {
+public class JsxElement extends Statment  {
     public int line ;
+    public String codeGenerationType = "html";
     public HashMap<String, Variable> attributes ;
     public String tagName ;
     public ArrayList<JsxElement> children ;
+    public String raw = "";
     public JsxElement(int line , String tagName , HashMap<String,Variable> attributes , ArrayList<JsxElement> children ){
         this.line = line ;
         this.tagName = tagName ;
@@ -43,7 +46,12 @@ public class JsxElement extends Statment implements CodeGeneartion {
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
-
+    public String getRaw(){
+        return raw ;
+    }
+    public void setRaw(String raw){
+        this.raw = raw ;
+    }
     public ArrayList<JsxElement> getChildren() {
         return children;
     }
@@ -54,7 +62,19 @@ public class JsxElement extends Statment implements CodeGeneartion {
 
 
     public String generate(){
-        return "" ;
+        HashMap<String,String> attributesMap = (HashMap<String, String>) Map.ofEntries(
+                entry("onClick","click"),
+                entry("onChange","change")
+        );
+
+        String str = "<" + tagName ;
+        for(String key : attributesMap.keySet()){
+            str += " " + key + "=\"" + attributesMap.get(key) + "\"";
+        }
+        str += ">" ;
+
+        str += "</" + tagName + ">" ;
+        return str;
     }
     public String toString(){
         return symbol();

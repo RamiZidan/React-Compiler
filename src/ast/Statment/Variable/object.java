@@ -1,8 +1,10 @@
 package ast.Statment.Variable;
 
 import ast.CodeGeneartion;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class object extends Variable implements CodeGeneartion {
     HashMap<String,Variable> varValue ;
@@ -37,8 +39,13 @@ public class object extends Variable implements CodeGeneartion {
     }
 
     @Override
-    public String generate() {
-        return "";
+    public String generateVarValue(){
+        String js = "{\n" ;
+        for(String key : varValue.keySet()){
+            js += key + ":" + varValue.get(key).generateVarValue() + "\n" ;
+        }
+        js += "}\n";
+        return js ;
     }
 
 }

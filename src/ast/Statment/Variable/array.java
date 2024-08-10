@@ -1,10 +1,12 @@
 package ast.Statment.Variable;
 import ast.CodeGeneartion;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
 public class array extends Variable implements CodeGeneartion {
     ArrayList<Variable> varValue ;
+
     public array(int line, String varModifier , String varName , ArrayList<Variable> varValue ){
         super(line ,varModifier , varName , "array") ;
         this.varValue= varValue;
@@ -40,8 +42,14 @@ public class array extends Variable implements CodeGeneartion {
     }
 
     @Override
-    public String generate() {
-        return "";
+    public String generateVarValue(){
+//        String html = "" ;
+        String js = "[" ;
+        for(int i = 0 ; i < varValue.size() ; i++){
+            js += varValue.get(i).generateVarValue() + (i == varValue.size()-1 ? "," : "") ;
+        }
+        js += "]\n" ;
+        return js ;
     }
 
 }

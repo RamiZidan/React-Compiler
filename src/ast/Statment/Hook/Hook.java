@@ -2,8 +2,9 @@ package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
+import org.antlr.v4.runtime.misc.Pair;
 
-public class Hook extends Statment implements CodeGeneartion {
+public class Hook extends Statment  {
     public int line ;
     public String hookName ;
     public Hook(){
@@ -12,8 +13,8 @@ public class Hook extends Statment implements CodeGeneartion {
 
 
     @Override
-    public String generate() {
-        return "";
+    public Pair<String,String>  generate() {
+        return new Pair<>("","");
     }
 
     @Override

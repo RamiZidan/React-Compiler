@@ -4,9 +4,8 @@ import ast.CodeGeneartion;
 
 import java.util.ArrayList;
 
-public class Export extends Statment implements CodeGeneartion {
+public class Export extends Statment  {
     public int line ;
-
     public ArrayList<String> items ;
     public String exportType ;
 

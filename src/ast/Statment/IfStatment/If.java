@@ -2,10 +2,11 @@ package ast.Statment.IfStatment;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
-public class If extends Statment implements CodeGeneartion {
+public class If extends Statment {
     public int line;
     public ArrayList<Condition> conditionsList ;
     public ArrayList<Statment> statments ;
@@ -45,10 +46,6 @@ public class If extends Statment implements CodeGeneartion {
          str += "}\n" ;
          return str ;
     }
-    @Override
-    public String generate() {
-        return "";
-    }
     public void setLine(int line){
         this.line = line ;
     }
@@ -56,4 +53,21 @@ public class If extends Statment implements CodeGeneartion {
         return line;
     }
 
+    @Override
+    public Pair<String,String> generate() {
+        String html = "" ;
+        String js = "if ( " + conditionsList.toString() ;
+        for(Condition condition : conditionsList){
+            html+= condition.generate().a ;
+            js += condition.generate().b;
+        }
+        js += " ) " ;
+        js += "{\n";
+        for(Statment statment : statments){
+            html += statment.generate().a + "\n" ;
+            js += statment.generate().b + "\n" ;
+        }
+        js += "}\n" ;
+        return new Pair<String,String>(html,js) ;
+    }
 }

@@ -3,7 +3,7 @@ package ast.Statment.Hook;
 import ast.CodeGeneartion;
 import ast.Statment.Variable.Variable;
 
-public class UseRef extends Hook implements CodeGeneartion {
+public class UseRef extends Hook  {
     public String varName;
     public Variable value ;
     public UseRef(String varName , Variable value){
