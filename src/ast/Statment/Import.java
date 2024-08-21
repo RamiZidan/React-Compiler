@@ -1,6 +1,7 @@
 package ast.Statment;
 
 import ast.CodeGeneartion;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
@@ -34,8 +35,14 @@ public class Import extends Statment {
         return "Import Statment { \n" + "module={" + moduleName + "} items={" + items.toString() + "}\n }\n" ;
     }
     @Override
-    public String generate() {
-        return "";
+    public Pair<String,String> generate() {
+        String html = "" , js = "" ;
+        js = "import " ;
+        for(String item : items){
+            js+= item  + " , ";
+        }
+        js += "from " + moduleName ;
+        return new Pair<>(html,js);
     }
     public void setLine(int line){
         this.line = line ;

@@ -3,6 +3,7 @@ package ast.Statment.FunctionStatment;
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
@@ -69,7 +70,7 @@ public class Function extends Statment  {
         String str =  "Function { \n " + "params={" + params.toString()  + "}\n" ;
         str +=  ", statments= { \n" ;
         for(int i =0  ;i < statments.size() ;i++){
-            str+= statments.get(i).toString();
+            str+= statments.get(i).toString() + " \n ";
         }
         str += "}\n";
         str += ", returnStatment={" + returnValue.toString() + "}\n" +
@@ -77,7 +78,18 @@ public class Function extends Statment  {
         return str ;
 
     }
-    public String generate(){
-        return "";
+    public Pair<String,String> generate(){
+        String html = "" ;
+        String js = "function " + functionName + "("  ;
+        for(int i =0 ;i < params.size() ;i++){
+            js += params.get(i).toString() ;
+        }
+        js += ") { \n " ;
+        for(int i =0 ;i < statments.size() ;i++){
+            if(statments.get(i).generate().b != null )
+            js += statments.get(i).generate().b + " \n" ;
+        }
+        js += "}\n";
+        return new Pair(html ,js);
     }
 }

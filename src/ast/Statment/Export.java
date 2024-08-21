@@ -1,6 +1,7 @@
 package ast.Statment;
 
 import ast.CodeGeneartion;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
@@ -34,8 +35,9 @@ public class Export extends Statment  {
         return "Export Statment { \n" + "type={" + exportType + "} items={" + items.toString() + "}\n }\n" ;
     }
     @Override
-    public String generate() {
-        return "";
+    public Pair<String,String> generate() {
+
+        return new Pair("","");
     }
     public void setLine(int line){
         this.line = line ;

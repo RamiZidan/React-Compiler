@@ -3,6 +3,7 @@ import static java.util.Map.entry;
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,20 +62,24 @@ public class JsxElement extends Statment  {
     }
 
 
-    public String generate(){
-        HashMap<String,String> attributesMap = (HashMap<String, String>) Map.ofEntries(
-                entry("onClick","click"),
-                entry("onChange","change")
-        );
+    public Pair<String,String> generate(){
+        HashMap<String,String> attributesMap = new HashMap<>() ;
+        attributesMap.put("onClick","click");
+        attributesMap.put("onChange","change");
 
         String str = "<" + tagName ;
-        for(String key : attributesMap.keySet()){
-            str += " " + key + "=\"" + attributesMap.get(key) + "\"";
+        for(String key : attributes.keySet()){
+            if(attributesMap.containsKey(key)){
+                str += " " + key + "=\"" + attributesMap.get(key) + "\"";
+            }
+            else{
+                str += " " + key + "=\"" + attributes.get(key) + "\"";
+            }
         }
         str += ">" ;
 
         str += "</" + tagName + ">" ;
-        return str;
+        return new Pair(str,"");
     }
     public String toString(){
         return symbol();

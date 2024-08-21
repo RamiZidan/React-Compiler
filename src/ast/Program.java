@@ -30,7 +30,7 @@ public class Program {
         String str = "Program { \n" ;
         for(int i =0  ;i < statments.size() ;i++){
             str += " Statment { \n"  ;
-            str+= statments.get(i).toString() + "\n" ;
+            str+= statments.get(i).toString() + " \n" ;
             str+= "}\n" ;
         }
         str+= "}\n";
@@ -38,21 +38,28 @@ public class Program {
     }
 
     public Pair<String,String> generateCode(){
+
         String htmlHeader = "<html> \n<head> </head>\n<body> \n" ;
         String htmlFooter = "</body> \n</html>\n";
         String html = "" ;
         html += htmlHeader;
-        String js = "" ;
+        String js = "<script>\n " ;
+        js += "let states = {}  ; " ;
         for(int i =0 ;i < statments.size() ;i++){
             Statment statment = statments.get(i);
-            html += statment.generate().a + "\n" ;
-            js+= statment.generate().b + "\n" ;
+            if(statments.get(i).generate().a != null )
+            html += statment.generate().a + " \n" ;
+            if(statments.get(i).generate().b != null )
+            js+= statment.generate().b + " \n" ;
         }
+        js+= "</script>\n" ;
         html += htmlFooter;
-        System.out.println("HTML");
+        System.out.println("/*----- Code Generation Start ------*/");
+        System.out.println("/* Generated HTML Code */");
         System.out.println(html);
-        System.out.println("JS");
+        System.out.println("/* Generated JS Code */");
         System.out.println(js);
+        System.out.println("/*------ Code Generation End  ------*/");
         return new Pair(html , js) ;
     }
     public void print_ast(){

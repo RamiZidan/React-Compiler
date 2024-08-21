@@ -2,6 +2,7 @@ package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 public class UseRef extends Hook  {
     public String varName;
@@ -23,8 +24,10 @@ public class UseRef extends Hook  {
         return value;
     }
 
-    public String generate() {
-        return "";
+    public Pair<String,String> generate() {
+        String html = "" , js = "" ;
+        js += "let " + varName + " = document.getElementById('" + varName + "')'" ;
+        return new Pair(html,js);
     }
     public String toString(){
         return symbol();

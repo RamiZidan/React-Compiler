@@ -2,6 +2,8 @@ package ast.Statment.IfStatment;
 
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
+import ast.Statment.Variable.number;
+
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
@@ -58,14 +60,18 @@ public class If extends Statment {
         String html = "" ;
         String js = "if ( " + conditionsList.toString() ;
         for(Condition condition : conditionsList){
-            html+= condition.generate().a ;
-            js += condition.generate().b;
+            if(condition.generate().a != null )
+                html+= condition.generate().a ; 
+            if(condition.generate().b != null )
+                js += condition.generate().b;
         }
         js += " ) " ;
         js += "{\n";
         for(Statment statment : statments){
-            html += statment.generate().a + "\n" ;
-            js += statment.generate().b + "\n" ;
+            if(statment.generate().a != null) 
+                html += statment.generate().a + "\n" ;
+            if(statment.generate().b != null)
+                js += statment.generate().b + "\n" ;    
         }
         js += "}\n" ;
         return new Pair<String,String>(html,js) ;

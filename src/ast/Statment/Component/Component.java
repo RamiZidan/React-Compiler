@@ -3,6 +3,7 @@ package ast.Statment.Component;
 import ast.CodeGeneartion;
 import ast.Statment.Statment;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
@@ -67,17 +68,26 @@ public class Component extends Statment  {
                         "params={" + params.toString() + "}\n" ;
         str += ", statments={" ;
         for(int i =0  ;i < statments.size() ;i++){
-            str += statments.get(i).toString() + "\n";
+            str += statments.get(i).toString() + " \n";
         }
         str += "}\n" ;
         str += ", returnStatment={" + returnValue.toString() + "}\n";
         str += "}\n" ;
         return str ;
     }
-    public String generate(){
-        String str = "COMP\n" ;
-        str += returnValue.getRaw();
-        return str; 
+    public Pair<String,String> generate(){
+        String html = "<!-- Comment Component name " + componentName + " --> \n";
+        String js = "" ;
+        for(int i =0 ;i < statments.size() ;i++){
+            if(statments.get(i).generate().a != null )
+                html += statments.get(i).generate().a + " \n";
+            if(statments.get(i).generate().b != null )
+                js += statments.get(i).generate().b + " \n" ;
+        }
+        if(returnValue.generate().a !=null )
+            html += returnValue.generate().a ;
+        
+        return new Pair(html,js);
 
     }
 }

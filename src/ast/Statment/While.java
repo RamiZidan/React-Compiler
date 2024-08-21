@@ -2,6 +2,7 @@ package ast.Statment;
 
 import ast.CodeGeneartion;
 import ast.Statment.IfStatment.Condition;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.ArrayList;
 
@@ -37,16 +38,22 @@ public class While extends Statment  {
     public String symbol(){
         String str =  "While statment { \n" + "conditions={" + conditionsList.toString()  + "} \n statments=" + " {" ;
         for(int i =0 ;i < statments.size();i++){
-            str+= statments.get(i).toString();
+            str+= statments.get(i).toString() + " \n";
         }
         str += " }\n" ;
         str += " }\n" ;
         return str ;
     }
 
-    public String generate() {
-        String str = "While( " + conditionsList.toString() + ")\n" + " {" ;
-        return str;
+    public Pair<String,String> generate() {
+        String js = "While( " + conditionsList.toString() + ")\n" + " {" ;
+        for(int i =0 ;i < statments.size();i++){
+            if(statments.get(i).generate().b != null )
+            js += statments.get(i).generate().b + " \n";
+        }
+        js+="}\n";
+
+        return new Pair("" ,js );
     }
     public void setLine(int line){
         this.line = line ;

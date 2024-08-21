@@ -2,6 +2,7 @@ package ast.Statment.Hook;
 
 import ast.CodeGeneartion;
 import ast.Statment.Variable.Variable;
+import org.antlr.v4.runtime.misc.Pair;
 
 public class UseState extends Hook  {
     public String stateName;
@@ -40,7 +41,10 @@ public class UseState extends Hook  {
         return "Hook { \n" + " type=useState , "  + " stateName={" + stateName + "}\n, setStateFunction={" + setStateFunctionName + "}\n, value={" + value.toString()  + "}\n }\n" ;
     }
 
-    public String generate() {
-        return "";
+    public Pair<String,String> generate() {
+        String html = "" ;
+        String js = "" ;
+        js+= "states = { ...states , " + stateName + " } ; ";
+        return new Pair(html, js);
     }
 }

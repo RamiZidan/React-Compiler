@@ -11,6 +11,7 @@ import antlr.ReactParser;
 import antlr.ReactLexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Main {
 //            System.out.println(baseVisitor);
             Program program = (Program) baseVisitor.visit(tree);
             program.print_ast();
-            program.generateCode();
+            Pair code =  program.generateCode();
             baseVisitor.symbolTable.printTable();
 
 //            System.out.println("\n\n\n"+"******* SYMPOL TABLE  *******"+"\n");

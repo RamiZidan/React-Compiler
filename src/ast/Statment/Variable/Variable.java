@@ -61,6 +61,8 @@ public class Variable extends Statment {
         return new Pair<>("",js);
     }
     public String generateVarValue(){
+        if(varValue == null)
+            return "" ;
         return varValue.toString();
     }
 }
