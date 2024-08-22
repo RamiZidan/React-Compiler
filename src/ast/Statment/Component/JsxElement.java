@@ -14,9 +14,8 @@ public class JsxElement extends Statment  {
     public String codeGenerationType = "html";
     public HashMap<String, Variable> attributes ;
     public String tagName ;
-    public ArrayList<JsxElement> children ;
-    public String raw = "";
-    public JsxElement(int line , String tagName , HashMap<String,Variable> attributes , ArrayList<JsxElement> children ){
+    public ArrayList<JsxEleContent> children ;
+    public JsxElement(int line , String tagName , HashMap<String,Variable> attributes , ArrayList<JsxEleContent> children ){
         this.line = line ;
         this.tagName = tagName ;
         this.attributes = attributes;
@@ -47,22 +46,18 @@ public class JsxElement extends Statment  {
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
-    public String getRaw(){
-        return raw ;
-    }
-    public void setRaw(String raw){
-        this.raw = raw ;
-    }
-    public ArrayList<JsxElement> getChildren() {
+
+    public ArrayList<JsxEleContent> getChildren() {
         return children;
     }
 
-    public void setChildren(ArrayList<JsxElement> children) {
+    public void setChildren(ArrayList<JsxEleContent> children) {
         this.children = children;
     }
 
 
     public Pair<String,String> generate(){
+
         HashMap<String,String> attributesMap = new HashMap<>() ;
         attributesMap.put("onClick","click");
         attributesMap.put("onChange","change");
@@ -70,14 +65,16 @@ public class JsxElement extends Statment  {
         String str = "<" + tagName ;
         for(String key : attributes.keySet()){
             if(attributesMap.containsKey(key)){
-                str += " " + key + "=\"" + attributesMap.get(key) + "\"";
+                str += " " + attributesMap.get(key) + "=\"" + attributes.get(key).generateVarValue() + "\"";
             }
             else{
-                str += " " + key + "=\"" + attributes.get(key) + "\"";
+                str += " " + key + "=\"" + attributes.get(key).generateVarValue() + "\"";
             }
         }
         str += ">" ;
-
+        for(int i =0 ;i < children.size() ; i++){
+            str += children.get(i).generate().a  + "\n";
+        }
         str += "</" + tagName + ">" ;
         return new Pair(str,"");
     }

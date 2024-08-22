@@ -5,6 +5,7 @@ import antlr.ReactParser;
 import antlr.ReactParserBaseVisitor;
 import ast.Program;
 import ast.Statment.Component.Component;
+import ast.Statment.Component.JsxEleContent;
 import ast.Statment.Component.JsxElement;
 import ast.Statment.Export;
 import ast.Statment.FunctionStatment.Function;
@@ -531,20 +532,21 @@ public class BaseVisitor extends ReactParserBaseVisitor {
             Variable value = (Variable) visitVariable( ctx.jsxAtt(i).jsxAttValue().variable() ) ;
             jsxAttributes.put(jsxAttName , value) ;
         }
-        ArrayList<JsxElement> children = new ArrayList<>();
+        ArrayList<JsxEleContent> children = new ArrayList<>();
         if(!ctx.jsxEleContent().isEmpty()){
             for(int i =0 ;i < ctx.jsxEleContent().size() ;i++){
+                JsxEleContent jsxEleContent ;
                 if(ctx.jsxEleContent(i).jsxElement() != null ){
-                    JsxElement jsxElement = (JsxElement)  visitJsxElement( ctx.jsxEleContent(i).jsxElement() );
-                    children.add( jsxElement) ;
+                    JsxEleContent jsxElement = new JsxEleContent( (JsxElement)  visitJsxElement( ctx.jsxEleContent(i).jsxElement() )) ;
+                    children.add( jsxElement ) ;
                 }
-
+                else if(!ctx.jsxEleContent(i).singleExpression().isEmpty()){
+                    JsxEleContent jsxElement = (JsxEleContent) new JsxEleContent(ctx.jsxEleContent(i).getText()) ;
+                    children.add( jsxElement ) ;
+                }
             }
         }
-
-        JsxElement jsxElement = new JsxElement( ctx.getStart().getLine() , jsxTagName , jsxAttributes , children ) ;
-        jsxElement.setRaw(ctx.getText());
-        return jsxElement ;
+        return  new JsxElement( ctx.getStart().getLine() , jsxTagName , jsxAttributes , children ) ;
     }
 
 }

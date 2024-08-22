@@ -37,11 +37,19 @@ public class Import extends Statment {
     @Override
     public Pair<String,String> generate() {
         String html = "" , js = "" ;
-        js = "import " ;
-        for(String item : items){
-            js+= item  + " , ";
+        js += "let declare " + moduleName.replaceAll("'","") + "\n" ;
+        js += "const {" ;
+        for(int i =0 ;i < items.size() ;i++){
+            js+= items.get(i);
+            if(i != items.size()-1 ){
+                js+= " , " ;
+            }
         }
-        js += "from " + moduleName ;
+        js+= "}" ;
+        if(moduleName.equals("'react'")){
+            html+= "<script crossorigin src=\"https://unpkg.com/react@18/umd/react.production.min.js\"></script>\n";
+        }
+        js += " = " + moduleName.replaceAll("'","") ;
         return new Pair<>(html,js);
     }
     public void setLine(int line){

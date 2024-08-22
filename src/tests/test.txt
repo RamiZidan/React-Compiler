@@ -8,7 +8,7 @@ const products ;
 function App(param){
     const x = 1 ;
     const array = [  ] ;
-    if(x == '1' ){
+    if( x == '1' ){
 
     }
     const [state , setState] = useState() ;

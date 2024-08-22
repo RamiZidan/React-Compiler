@@ -43,7 +43,7 @@ public class Main {
 //            System.out.println(baseVisitor);
             Program program = (Program) baseVisitor.visit(tree);
             program.print_ast();
-            Pair code =  program.generateCode();
+            program.generateCode();
             baseVisitor.symbolTable.printTable();
 
 //            System.out.println("\n\n\n"+"******* SYMPOL TABLE  *******"+"\n");

@@ -25,7 +25,8 @@ public class array extends Variable implements CodeGeneartion {
     }
     @Override
     public String getVarValue(){
-        return varValue.toString() ;
+        return "[" +
+                varValue.toString()  + "]";
     }
     @Override
     public String toString() {

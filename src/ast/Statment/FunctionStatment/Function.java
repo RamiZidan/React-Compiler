@@ -82,14 +82,19 @@ public class Function extends Statment  {
         String html = "" ;
         String js = "function " + functionName + "("  ;
         for(int i =0 ;i < params.size() ;i++){
-            js += params.get(i).toString() ;
+            js += params.get(i).getVarName() ;
+            if(i != params.size()-1){
+                js+= ", " ;
+            }
         }
         js += ") { \n " ;
         for(int i =0 ;i < statments.size() ;i++){
             if(statments.get(i).generate().b != null )
-            js += statments.get(i).generate().b + " \n" ;
+                js += statments.get(i).generate().b + " \n" ;
         }
+        js+= "return " + returnValue.getVarValue() + "\n";
         js += "}\n";
+
         return new Pair(html ,js);
     }
 }

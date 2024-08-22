@@ -84,9 +84,9 @@ public class Component extends Statment  {
             if(statments.get(i).generate().b != null )
                 js += statments.get(i).generate().b + " \n" ;
         }
+
         if(returnValue.generate().a !=null )
             html += returnValue.generate().a ;
-        
         return new Pair(html,js);
 
     }

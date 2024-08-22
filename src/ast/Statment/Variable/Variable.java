@@ -57,7 +57,12 @@ public class Variable extends Statment {
         return varName.isEmpty();
     }
     public Pair<String,String> generate(){
-        String js = varModifier + " " + varName + " = " + generateVarValue() ;
+
+        String js = varModifier + " " + varName ;
+        if(!generateVarValue().equals("") && generateVarValue() != null){
+            js+= " = " + generateVarValue() ;
+        }
+        js += ";";
         return new Pair<>("",js);
     }
     public String generateVarValue(){

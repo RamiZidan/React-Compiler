@@ -33,11 +33,13 @@ public class Condition  {
     }
 
     public Pair<String,String> generate(){
-        String js = "(" ;
-        js += variable1.generateVarValue() ;
+        String js = "" ;
+        if(variable1 != null){}
+            js += variable1.getVarValue() ;
         js += compare ;
-        js += variable2.generateVarValue() ;
-        js += ")" ;
+        if(variable2!= null){}
+            js += variable2.getVarValue() ;
+        js += "" ;
         return new Pair<String,String>( "",js) ;
     }
 

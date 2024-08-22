@@ -58,7 +58,7 @@ public class If extends Statment {
     @Override
     public Pair<String,String> generate() {
         String html = "" ;
-        String js = "if ( " + conditionsList.toString() ;
+        String js = "if ( " ;
         for(Condition condition : conditionsList){
             if(condition.generate().a != null )
                 html+= condition.generate().a ; 

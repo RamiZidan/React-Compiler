@@ -26,7 +26,7 @@ public class UseRef extends Hook  {
 
     public Pair<String,String> generate() {
         String html = "" , js = "" ;
-        js += "let " + varName + " = document.getElementById('" + varName + "')'" ;
+        js += "let " + varName + " = document.getElementById('" + varName + "')" ;
         return new Pair(html,js);
     }
     public String toString(){

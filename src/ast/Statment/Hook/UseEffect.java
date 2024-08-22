@@ -42,24 +42,32 @@ public class UseEffect extends Hook  {
         String js = "function " + functionName + "()" + "{ \n" ;
         for(int i= 0 ;i < statmentsList.size();i++){
             if(statmentsList.get(i).generate().b != null )
-            js += statmentsList.get(i).generate().b;
+                js += statmentsList.get(i).generate().b + " \n";
+
         }
         js += "}\n" ;
-        js = "window.onload = () => { \n" ;
-        js += functionName + "(); \n" ;
-        js += "}\n" ;
-        js += "const " + "Proxy_"+ functionName + "= " + "new Proxy(" + ", {" + "\n" ;
+        js += "window.onload(()=>{  " ;
+        js += "\t" + functionName + "(); \n" ;
+        js += "})\n" ;
+        js += "const " + "Proxy_"+ functionName + "= " + "new Proxy( states " + ", {" + "\n" ;
         js+= "set: function ( target , key , value ) { \n";
-        js += "let dependcy = [ " + dependencyList.toString() + " ];\n";
-        js += "if ( " ;
+        js+= "let dependency = [ " ;
         for(int i = 0 ;i < dependencyList.size();i++){
-            js+= "states.includes(" + dependencyList.get(i).varName + ") || \n ";
+            js +=  dependencyList.get(i).getVarValue();
+            if(i != dependencyList.size() - 1){
+                js+= " , " ;
+            }
         }
+        js += "];\n" ;
+        js+= "for (let i = 0 ;i < dependency.length ;i++){ \n " ;
+        js += "if ( " ;
+        js+= "states.includes(" + "dependency[i] " + ")";
         js += ") {\n " ;
         js += "target[key] = value; \n";
         js += functionName + "(); \n" ;
         js += "}\n" ;
-        js += "}\n";
+        js+= "}\n" ;
+        js += "}\n }) ";
         return new Pair<>(html,js);
     }
 
